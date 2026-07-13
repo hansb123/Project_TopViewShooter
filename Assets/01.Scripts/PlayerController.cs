@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-    Vector2 dir;
-    Rigidbody2D rb;
+    private Vector2 dir;
+    private Rigidbody2D rb;
 
     [SerializeField] WeaponLaser laser;
    

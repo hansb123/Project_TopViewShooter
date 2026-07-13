@@ -5,9 +5,6 @@ public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] Transform firePos;
 
-  
-   //¡∂¡ÿº± LineRenderer  
-
     void Start()
     {
       

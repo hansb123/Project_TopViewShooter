@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 
 public class WeaponLaser : MonoBehaviour 
 {
-    [SerializeField] Transform laserPos;
-    LineRenderer line;
+    [SerializeField] private Transform laserPos;
+    private LineRenderer line;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class WeaponLaser : MonoBehaviour
 
     //Raycast => 선 충돌감지 / 선이 충돌 시 그 이후 선을 x (장애물에 닿으면 선을 제거해야하므로) 
     //LineRenderer => 선을 그리기.
-    //https://hsh12345.tistory.com/298
+    //https://hsh12345.tistory.com/298 참고하였음 
     public void DrawAim() 
     {
 
