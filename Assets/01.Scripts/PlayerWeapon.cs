@@ -1,20 +1,45 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerWeapon : MonoBehaviour
+public abstract class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] Transform firePos;
 
-    void Start()
-    {
-      
-    }
-
+    [SerializeField] protected WeaponLaser laser;
   
     void Update()
     {
-       
+        //조준선 생성 
+        CrossHairLaser();
+        Equip();
+
+
     }
+
+    //player 조준선
+    protected void CrossHairLaser()
+    {
+
+        if (Mouse.current.rightButton.isPressed)
+        {
+            laser.DrawAim();
+            if(Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Attack();
+            }
+        }
+        else
+        {
+            laser.HideAim();
+        }
+    }
+
+   
+
+     protected abstract void Attack();
+ 
+
+
 
    
 }

@@ -6,6 +6,8 @@ public class WeaponLaser : MonoBehaviour
 {
     [SerializeField] private Transform laserPos;
     private LineRenderer line;
+    
+    //TODO : 각 무기들의 데이터를 가져오지말고 Weapon의 현재 무기(range)를 Laser에서 받기 
 
     void Start()
     {
