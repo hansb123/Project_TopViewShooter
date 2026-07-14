@@ -25,7 +25,7 @@ public abstract class PlayerWeapon : MonoBehaviour
 
         if (Mouse.current.rightButton.isPressed)
         {
-            laser.DrawAim();
+            laser.DrawAim(weaponData.range);
             
         }
         else

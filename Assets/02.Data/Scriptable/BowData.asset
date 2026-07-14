@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BowData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   damage: 10
-  range: 5
-  attackSpeed: 3
-  fireRate: 10
+  range: 8
+  attackSpeed: 10
+  fireRate: 1.5

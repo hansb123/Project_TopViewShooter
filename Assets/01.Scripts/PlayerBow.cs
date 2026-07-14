@@ -3,11 +3,14 @@ using UnityEngine.InputSystem;
 public class PlayerBow : PlayerWeapon
 {
     float charge;
+
+    
     float currentcharge;
     bool isCharge;
     void Start()
     {
-        charge = 1.5f;
+        //차지속도 => 총 쏘는 사이의 간격으로 설정함 
+        charge = weaponData.fireRate;
         camera = Camera.main;
         isCharge = false;
     }
