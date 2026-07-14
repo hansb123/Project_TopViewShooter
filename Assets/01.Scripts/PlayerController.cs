@@ -6,18 +6,21 @@ public class PlayerController : MonoBehaviour
     private Vector2 dir;
     private Rigidbody2D rb;
 
-    [SerializeField] WeaponLaser laser;
-   
 
    
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-     
+        rb = GetComponent<Rigidbody2D>(); 
     }
 
     
     void Update()
+    {
+        PlayerMove();
+    }
+
+
+    private void PlayerMove()
     {
         dir = Vector2.zero;
         if (Keyboard.current.wKey.isPressed)
@@ -36,17 +39,9 @@ public class PlayerController : MonoBehaviour
         {
             dir += Vector2.right;
         }
-
-        if (Mouse.current.rightButton.isPressed)
-        {
-            laser.DrawAim();
-        }
-        else
-        {
-            laser.HideAim();
-        }
-
     }
+
+ 
 
     private void FixedUpdate()
     {
