@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
@@ -7,12 +9,13 @@ public abstract class Projectile : MonoBehaviour
     protected float timer;
     protected int damage;
     protected float speed;
+    protected float currentSpeed;
     protected float range;
 
 
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
-
+    Vector3 startPos;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,25 +23,34 @@ public abstract class Projectile : MonoBehaviour
         timer = 0f;
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         timer = 0f;
+        
+        
     }
 
 
-    void Update()
+    private void Update()
     {
         if (timer >= lifeTime)
         {
             ReturnPool();
         }
+
+        if (Vector3.Distance(startPos, transform.position) >=range)
+        {
+            ReturnPool();
+        }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
-        rb.linearVelocity = transform.right * speed;
+
+
     }
+  
 
     protected abstract void ReturnPool();
    
@@ -57,19 +69,14 @@ public abstract class Projectile : MonoBehaviour
 
     }
 
-
-    public void SetDamage(int dmg)
+    public void Init(int dmg, float spd, float rng) 
     {
         damage = dmg;
-    }
-
-    public void SetSpeed(float spd)
-    {
         speed = spd;
+        range = rng;
+
+        startPos = transform.position;
+        currentSpeed = speed;
     }
 
-    public void SetRange(float rng)
-    {
-        range = rng;
-    }
 }

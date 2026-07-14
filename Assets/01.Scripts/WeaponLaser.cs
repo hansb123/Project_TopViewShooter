@@ -7,7 +7,6 @@ public class WeaponLaser : MonoBehaviour
     [SerializeField] private Transform laserPos;
     private LineRenderer line;
     
-    //TODO :  WeaponData 의 현재장착 무기(range)를 Laser에서 받기 
 
     void Start()
     {
@@ -21,7 +20,7 @@ public class WeaponLaser : MonoBehaviour
 
     //Raycast => 선 충돌감지 / 선이 충돌 시 그 이후 선을 x (장애물에 닿으면 선을 제거해야하므로) 
     //LineRenderer => 선을 그리기.
-    //https://hsh12345.tistory.com/298 참고하였음 
+    //https://hsh12345.tistory.com/298 해당 블로그 참고하였음 
     public void DrawAim(float rng) 
     {
 
@@ -33,7 +32,7 @@ public class WeaponLaser : MonoBehaviour
 
         Vector2 rayDirection = (mousePos - laserPos.position).normalized; //플레이어 위치 기준 마우스 방향 구하기 .
 
-        crosshair = Physics2D.Raycast(laserPos.position, rayDirection, rng); //TODO: 총별로 조준(사거리)길이 정해주기 
+        crosshair = Physics2D.Raycast(laserPos.position, rayDirection, rng); 
 
         //Debug.DrawRay(laserPos.position, rayDirection *5f);
 
@@ -49,7 +48,7 @@ public class WeaponLaser : MonoBehaviour
         }
         else
         {
-            line.SetPosition(1, (Vector2)laserPos.position + rayDirection * rng); // TODO: 총별로 조준(사거리)길이 정해주기 
+            line.SetPosition(1, (Vector2)laserPos.position + rayDirection * rng); 
         }
    
 

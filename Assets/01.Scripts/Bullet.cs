@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Projectile
 {
    
     void Start()
@@ -12,5 +12,10 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         
+    }
+
+    protected override void ReturnPool()
+    {
+        ObjectPoolManager.instance.ReturnObject("Bullet", this.gameObject);
     }
 }
