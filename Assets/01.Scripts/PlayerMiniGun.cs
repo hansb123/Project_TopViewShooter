@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class PlayerMiniGun : PlayerWeapon
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private int nowAmmo;
+
     void Start()
     {
-        
+        camera = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 
     protected override void Attack()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

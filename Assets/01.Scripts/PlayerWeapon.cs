@@ -3,17 +3,20 @@ using UnityEngine.InputSystem;
 
 public abstract class PlayerWeapon : MonoBehaviour
 {
-    [SerializeField] Transform firePos;
-
+    [SerializeField] protected Transform firePos;
+    [SerializeField] protected WeaponData weaponData;
     [SerializeField] protected WeaponLaser laser;
-  
-    void Update()
+
+    protected Camera camera;
+
+    
+
+    protected virtual void Update()
     {
         //조준선 생성 
+        //조준선과 조준은 별개 
         CrossHairLaser();
-        Equip();
-
-
+        LookAtMouse();
     }
 
     //player 조준선
@@ -23,15 +26,28 @@ public abstract class PlayerWeapon : MonoBehaviour
         if (Mouse.current.rightButton.isPressed)
         {
             laser.DrawAim();
-            if(Mouse.current.leftButton.wasPressedThisFrame)
-            {
-                Attack();
-            }
+            
         }
         else
         {
             laser.HideAim();
         }
+    }
+
+    private void LookAtMouse()
+    {
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+
+        Vector3 worldPos = camera.ScreenToWorldPoint(mousePos);
+
+        worldPos.z = 0f;
+
+        Vector2 dir = worldPos - transform.position;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
     }
 
    

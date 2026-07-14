@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class PlayerHandGun : PlayerWeapon
 {
-   
+
+    private int nowAmmo;
+
+
     void Start()
     {
-        
+        camera = Camera.main;
     }
 
-    
-    void Update()
+
+    protected override void Update()
     {
-        
+        base.Update();
     }
 
     protected override void Attack()

@@ -102,11 +102,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6413345170701042197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa74bca9bde682741a9a1c2e8477ef8a, type: 3}
+  m_Script: {fileID: 11500000, guid: d7452ac6c4296e64b8ecef85aeecf154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBow
-  firePos: {fileID: 2724418338811231833}
-  laser: {fileID: 3332555864740195214}
+  firePos: {fileID: 0}
+  laser: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 92988268815263041835af27da426d86, type: 2}
 --- !u!1 &7723518108667807533
 GameObject:
   m_ObjectHideFlags: 0
