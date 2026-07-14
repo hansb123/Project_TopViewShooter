@@ -1,10 +1,12 @@
-using JetBrains.Annotations;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
     public static UiManager instance;
 
+
+    [SerializeField] Slider isFire;
     private void Awake()
     {
         if (instance == null)
@@ -22,9 +24,9 @@ public class UiManager : MonoBehaviour
     }
 
 
-    public void FireUpdate(float fireRate)
+    public void FireHudUpdate(float fireRate)
     {
-
+        isFire.value = fireRate;
     }
 
 }

@@ -7,8 +7,7 @@ public class PlayerBow : PlayerWeapon
     bool isCharge;
     void Start()
     {
-        //차지속도 => 총 쏘는 사이의 간격으로 설정함 
-        //TODO : HUD 제작. => 활시위 등을 사용해야하므로  
+        //차지속도 => 총 쏘는 사이의 간격으로 설정
         charge = weaponData.fireRate;
         camera = Camera.main;
         isCharge = false;
@@ -18,7 +17,8 @@ public class PlayerBow : PlayerWeapon
     {
         base.Update();
         IsCharged(); //활시위
-        UiManager.instance.FireUpdate(charge);
+       
+        UiManager.instance.FireHudUpdate(currentcharge / charge );   //HUD에 활시위 전달 
     }
 
     void IsCharged() 
