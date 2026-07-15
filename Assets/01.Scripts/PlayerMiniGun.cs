@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMiniGun : PlayerWeapon, IReloadAmmo
+public class PlayerMiniGun : PlayerWeapon
 {
 
-
+    private IReloadAmmo reloadAmmo;
 
 
     protected override void Start()
     {
         base.Start();
+        reloadAmmo = GetComponentInParent<IReloadAmmo>();
         camera = Camera.main;
     }
 
@@ -20,6 +21,9 @@ public class PlayerMiniGun : PlayerWeapon, IReloadAmmo
         base.Update();
         IsFire();
     }
+
+
+   
 
     void IsFire() 
     {
@@ -32,6 +36,8 @@ public class PlayerMiniGun : PlayerWeapon, IReloadAmmo
             if (currentFire >= fireRate)
             {
                 //이곳에 현재 잔존탄약코드넣기 
+
+                
                 isFire = true;
             }
 
@@ -44,6 +50,8 @@ public class PlayerMiniGun : PlayerWeapon, IReloadAmmo
 
         if (isFire && Mouse.current.leftButton.isPressed)
         {
+            //
+            if(TryUseAmmo()) //탄약이 있다면
             Attack();
 
         }
@@ -68,5 +76,16 @@ public class PlayerMiniGun : PlayerWeapon, IReloadAmmo
 
         currentFire = 0f;
         isFire = false;
+    }
+
+
+    public void SetAmmo(IReloadAmmo ammo)
+    {
+        reloadAmmo = ammo;
+    }
+
+    private bool TryUseAmmo()
+    {
+        return reloadAmmo.UseAmmo(1);
     }
 }

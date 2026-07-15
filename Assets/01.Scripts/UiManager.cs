@@ -1,5 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class UiManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] Slider isFire;
     [SerializeField] Slider isReload;
+
+    [SerializeField] TextMeshProUGUI ammoText;
+
     private void Awake()
     {
         if (instance == null)
@@ -37,14 +41,14 @@ public class UiManager : MonoBehaviour
 
 
 
-    public void HpHudUpdate(float _Hp)
+    public void HpHudUpdate(float _hp)
     {
 
     }
 
-    public void AmmoHudUpdate(int _Ammo)
+    public void AmmoHudUpdate(int _ammo)
     {
-
+        ammoText.text = $"{_ammo}";
     }
 
     public void GranadeHudUpdate(int _granade)

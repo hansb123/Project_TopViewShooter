@@ -10,25 +10,34 @@ public class PickupItem : MonoBehaviour
     ///더좋은 방법이 있는지. 멘토링 
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-              //장착 장비인지, 소모품인지 검사 
-            if (item.itemtype == ItemType.Ammo || item.itemtype == ItemType.Potion || item.itemtype == ItemType.Granade)
+            Inventory inventory = collision.gameObject.GetComponent<Inventory>();
+
+            if(inventory != null)
             {
-               
+                inventory.GetItem(item);
+                Destroy(gameObject);
             }
 
-
-            if (item.itemtype == ItemType.Helemet || item.itemtype == ItemType.Chest || item.itemtype == ItemType.Leg)
-            {
-                
-            }
-
-
-            Destroy(gameObject);
+           
         }
-        
     }
+
 }
+
+
+//장착 장비인지, 소모품인지 검사 => 여기서 하지않고, Inventory가 검사 시키기.
+
+//if (item.itemtype == ItemType.Ammo || item.itemtype == ItemType.Potion || item.itemtype == ItemType.Granade)
+//{
+
+//}
+
+
+//if (item.itemtype == ItemType.Helemet || item.itemtype == ItemType.Chest || item.itemtype == ItemType.Leg)
+//{
+
+//}

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerMove();
+        PlayerWeaponSwap();
     }
 
 
@@ -41,7 +42,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
- 
+    private void PlayerWeaponSwap()
+    {
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+            ChangeWeapon(0);
+
+        if (Keyboard.current.digit2Key.wasPressedThisFrame)
+            ChangeWeapon(1);
+
+        if (Keyboard.current.digit3Key.wasPressedThisFrame)
+            ChangeWeapon(2);
+    }
+
+
+    private void ChangeWeapon(int index)
+    {
+        for (int i= 0; i< transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(i == index);
+        }
+
+    }
+
+
+
 
     private void FixedUpdate()
     {

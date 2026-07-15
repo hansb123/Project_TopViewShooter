@@ -1,10 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-interface IReloadAmmo
-{
 
-}
 
 
 public abstract class PlayerWeapon : MonoBehaviour
@@ -18,6 +15,8 @@ public abstract class PlayerWeapon : MonoBehaviour
     protected float fireRate;
     protected float currentFire;
     protected bool isFire;
+
+    
 
 
     protected virtual void Start()

@@ -12,12 +12,9 @@ public class PlayerInfo : MonoBehaviour
     int defense;
 
 
-  
-    [SerializeField] private Item helmet; 
-    [SerializeField] private Item chest;
-    [SerializeField] private Item leg;
-
-    [SerializeField] Inventory inventory;
+   
+    //기본장비 : 
+   
 
 
 
@@ -27,7 +24,7 @@ public class PlayerInfo : MonoBehaviour
     }
 
    
-    public void UpdateDefense() //defense변경.
+    public void UpdateDefense(Item helmet, Item chest, Item leg) //defense변경.
     {
         defense = 0;
 

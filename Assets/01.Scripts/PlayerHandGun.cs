@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerHandGun : PlayerWeapon, IReloadAmmo
+public class PlayerHandGun : PlayerWeapon
 {
     //TODO : 가지고 있어야할 값들 => 탄약(재장전 필요)
 
-
+    private IReloadAmmo reloadAmmo;
 
     protected override void Start()
     {
         base.Start();
+        reloadAmmo = GetComponentInParent<IReloadAmmo>();
         camera = Camera.main;
       
     }
@@ -58,6 +59,7 @@ public class PlayerHandGun : PlayerWeapon, IReloadAmmo
 
         if (isFire && Mouse.current.leftButton.wasPressedThisFrame)
         {
+            if(TryUseAmmo())
             Attack();
 
         }
@@ -82,5 +84,17 @@ public class PlayerHandGun : PlayerWeapon, IReloadAmmo
 
         currentFire = 0f;
         isFire = false;
+
+       
+    }
+
+    public void SetAmmo(IReloadAmmo ammo)
+    {
+        reloadAmmo = ammo;
+    }
+
+    private bool TryUseAmmo()
+    {
+        return reloadAmmo.UseAmmo(1);
     }
 }
