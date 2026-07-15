@@ -2,15 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerBow : PlayerWeapon
 {
-    float charge;
-    float currentcharge;
-    bool isCharge;
-    void Start()
+    
+
+    protected override void Start()
     {
         //차지속도 => 총 쏘는 사이의 간격으로 설정
-        charge = weaponData.fireRate;
+        base.Start();
         camera = Camera.main;
-        isCharge = false;
+      
     }
 
     protected override void Update()
@@ -18,7 +17,7 @@ public class PlayerBow : PlayerWeapon
         base.Update();
         IsCharged(); //활시위
        
-        UiManager.instance.FireHudUpdate(currentcharge / charge );   //HUD에 활시위 전달 
+           //HUD에 활시위 전달 
     }
 
     void IsCharged() 
@@ -26,23 +25,23 @@ public class PlayerBow : PlayerWeapon
         
         if (Mouse.current.rightButton.isPressed)
         {
-            currentcharge += Time.deltaTime;
+            currentFire += Time.deltaTime;
            
 
-            if (currentcharge >= charge)
+            if (currentFire >= fireRate)
             {
-              
-                isCharge = true;
+
+                isFire = true;
             }
 
         }
         else
         {
-            currentcharge = 0f;
-            isCharge = false;
+            currentFire = 0f;
+            isFire = false;
         }
 
-        if(isCharge && Mouse.current.leftButton.wasPressedThisFrame)
+        if(isFire && Mouse.current.leftButton.wasPressedThisFrame)
         {
             Attack();
             
@@ -66,7 +65,7 @@ public class PlayerBow : PlayerWeapon
             weaponData.range
             );
 
-        currentcharge = 0f;
-        isCharge = false;
+        currentFire = 0f;
+        isFire = false;
     }
 }

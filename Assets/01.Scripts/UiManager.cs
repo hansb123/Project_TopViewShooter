@@ -29,4 +29,7 @@ public class UiManager : MonoBehaviour
         isFire.value = fireRate;
     }
 
+
+
+
 }

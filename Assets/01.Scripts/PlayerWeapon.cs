@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+interface IReloadAmmo
+{
+
+}
+
+
 public abstract class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] protected Transform firePos;
@@ -9,7 +15,16 @@ public abstract class PlayerWeapon : MonoBehaviour
 
     protected Camera camera;
 
-    
+    protected float fireRate;
+    protected float currentFire;
+    protected bool isFire;
+
+
+    protected virtual void Start()
+    {
+        fireRate = weaponData.fireRate;
+        isFire = false;
+    }
 
     protected virtual void Update()
     {
@@ -17,6 +32,7 @@ public abstract class PlayerWeapon : MonoBehaviour
         //조준선과 조준은 별개 
         CrossHairLaser();
         LookAtMouse();
+        UiManager.instance.FireHudUpdate(currentFire / fireRate);
     }
 
     //player 조준선

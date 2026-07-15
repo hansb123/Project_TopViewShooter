@@ -5,8 +5,9 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
 
-    protected float lifeTime;
+    protected float lifeTime; //기본적으로 발사체들의 사거리가 존재하지만, 게임 내에 잔류할 가능성이 있으므로 
     protected float timer;
+
     protected int damage;
     protected float speed;
     protected float currentSpeed;
