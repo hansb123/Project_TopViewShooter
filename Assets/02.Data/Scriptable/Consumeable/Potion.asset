@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45233ab34ecf174fa857a4e11d75fa0, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: 
-  itemImage: {fileID: 0}
+  itemName: Potion
+  itemImage: {fileID: -742081697353132240, guid: 1f925a74ba5cef140ab00915e409e62b, type: 3}
+  itemtype: 1
+  itemLevel: 0
+  value: 30

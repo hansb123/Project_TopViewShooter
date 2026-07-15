@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45233ab34ecf174fa857a4e11d75fa0, type: 3}
   m_Name: Bullet
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: 
-  itemImage: {fileID: 0}
+  itemName: Bullet
+  itemImage: {fileID: -5476636203795425448, guid: ad662200aae7d71438f594a66f0facb1, type: 3}
+  itemtype: 0
+  itemLevel: 1
+  value: 60

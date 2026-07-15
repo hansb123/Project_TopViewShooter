@@ -32,6 +32,7 @@ public abstract class PlayerWeapon : MonoBehaviour
         //조준선과 조준은 별개 
         CrossHairLaser();
         LookAtMouse();
+        ThrowGranade();
         UiManager.instance.FireHudUpdate(currentFire / fireRate);
     }
 
@@ -63,6 +64,15 @@ public abstract class PlayerWeapon : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+    }
+
+    private void ThrowGranade()
+    {
+        if(Keyboard.current.qKey.wasPressedThisFrame)
+        {
+
+        }
 
     }
 

@@ -35,10 +35,6 @@ public class PlayerHandGun : PlayerWeapon, IReloadAmmo
         }
     }
 
-
-    
-
-
     void IsFire() //Handgun의 경우도 마찬가지로 단발성 공격이므로,해당 코드를 부모에 두지 않았다. (WasPressedThisFrame이므로)
     {
 

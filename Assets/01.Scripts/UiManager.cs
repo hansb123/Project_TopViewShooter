@@ -7,6 +7,7 @@ public class UiManager : MonoBehaviour
 
 
     [SerializeField] Slider isFire;
+    [SerializeField] Slider isReload;
     private void Awake()
     {
         if (instance == null)
@@ -24,9 +25,31 @@ public class UiManager : MonoBehaviour
     }
 
 
-    public void FireHudUpdate(float fireRate)
+    public void FireHudUpdate(float fireRate) //사격 속도
     {
         isFire.value = fireRate;
+    }
+
+    public void Reload(float reload) //장전 
+    {
+        isReload.value = reload;
+    }
+
+
+
+    public void HpHudUpdate(float _Hp)
+    {
+
+    }
+
+    public void AmmoHudUpdate(int _Ammo)
+    {
+
+    }
+
+    public void GranadeHudUpdate(int _granade)
+    {
+
     }
 
 

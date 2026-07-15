@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//https://geojun.tistory.com/62#google_vignette 해당 블로그를 참조하였습니다.
 public class Inventory : MonoBehaviour
 {
     public List<Item> items;
 
     [SerializeField] Transform slotParent;
     [SerializeField] private Slot[] slots;
+
+    //public Item item;
    
     void Start()
     {
@@ -50,12 +54,5 @@ public class Inventory : MonoBehaviour
         }
     }
 
-   
-    
 
-
-    void Update()
-    {
-        
-    }
 }
