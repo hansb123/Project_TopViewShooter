@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [SerializeField] private Transform target;
     private Vector3 vel = Vector3.zero;
 
     private void Start()
@@ -13,7 +13,7 @@ public class CameraMove : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 targetPos = new Vector3(player.position.x, player.position.y, transform.position.z);
+        Vector3 targetPos = new Vector3(target.position.x, target.position.y, transform.position.z);
 
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref vel, 0.15f);
