@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Projectile
 {
-   
-    void Start()
+
+    protected override void FixedUpdate()
     {
-        
+        base.FixedUpdate();
+
+
+         rb.linearVelocity = transform.right * currentSpeed;
+
     }
 
-   
-    void Update()
+    protected override void ReturnPool()
     {
-        
+        ObjectPoolManager.instance.ReturnObject("Bullet", this.gameObject);
     }
+
+    
 }

@@ -10,7 +10,7 @@ public class WeaponData : ScriptableObject
 
 
     //PlayerWeapon이 사용할 변수 
-    public float fireRate; //공격 주기 
+    public float fireRate; //활의 경우 활 시위 당기는 시간, 총의경우 장전시간. 
 
 
 
