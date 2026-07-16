@@ -7,7 +7,7 @@ using UnityEngine;
 //}
 
 //enum{ }//
-//TODO : 시간남으면 구현..
+//TODO :  PoolType을 enum으로 관리 ..
 
 
 public class ObjectPoolManager : MonoBehaviour

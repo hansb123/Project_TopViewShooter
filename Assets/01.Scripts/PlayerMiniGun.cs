@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 public class PlayerMiniGun : PlayerWeapon
 {
 
-    private IReloadAmmo reloadAmmo;
+    private Iinventory reloadAmmo;
 
 
     protected override void Start()
     {
         base.Start();
-        reloadAmmo = GetComponentInParent<IReloadAmmo>();
+        reloadAmmo = GetComponentInParent<Iinventory>();
         camera = Camera.main;
     }
 
@@ -79,13 +79,13 @@ public class PlayerMiniGun : PlayerWeapon
     }
 
 
-    public void SetAmmo(IReloadAmmo ammo)
+    public void SetAmmo(Iinventory ammo)
     {
         reloadAmmo = ammo;
     }
 
     private bool TryUseAmmo()
     {
-        return reloadAmmo.UseAmmo(1);
+        return reloadAmmo.UseAmmo(1); //Åº¾à 1¹ß »ç¿ë
     }
 }

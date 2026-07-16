@@ -1,5 +1,4 @@
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
+
 using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
@@ -39,7 +38,7 @@ public abstract class Projectile : MonoBehaviour
             ReturnPool();
         }
 
-        if (Vector3.Distance(startPos, transform.position) >=range)
+        if (Vector3.Distance(startPos, transform.position) >=range) //사거리 제한 
         {
             ReturnPool();
         }
@@ -59,7 +58,7 @@ public abstract class Projectile : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-
+            Debug.Log($"준 데미지 :{damage}");
             ReturnPool();
 
         }

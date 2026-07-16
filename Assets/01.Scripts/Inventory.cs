@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IReloadAmmo
+public interface Iinventory
 {
-    bool UseAmmo(int amount); //의존성을 낮추기 위해서 인터페이스를 사용함. (PlayerWeapon이 탄약을 모르게) 
+    bool UseAmmo(int amount); //의존성을 낮추기 위해서 인터페이스를 사용함. (PlayerWeapon이 탄약을 모르게)  탄약 1발 사용 => 무기 추가 확장성 
+    bool UsePotion();
+
+    bool UseGranade();
+
 }
 
 //https://geojun.tistory.com/62#google_vignette 해당 블로그를 참조하였습니다.
-public class Inventory : MonoBehaviour , IReloadAmmo
+public class Inventory : MonoBehaviour , Iinventory
 {
     //고정 슬롯 X => List 제거 ?
     public List<Item> items; 
@@ -24,7 +28,9 @@ public class Inventory : MonoBehaviour , IReloadAmmo
 
     private int ammo;
     private int potion;
+    private int potionValue;
     private int granade;
+    private int granadeValue;
 
     
 
@@ -84,10 +90,12 @@ public class Inventory : MonoBehaviour , IReloadAmmo
                 break;
 
             case ItemType.Potion:
+                potionValue = item.value;
                 AddPotion(item);
                 break;
 
             case ItemType.Granade:
+                granadeValue = item.value; //초기화 1회 
                 AddGranade(item);
                 break;
 
@@ -116,14 +124,19 @@ public class Inventory : MonoBehaviour , IReloadAmmo
 
     private void AddPotion(Item item)
     {
-        potion += item.value;
+        
+        potion++;
+        UiManager.instance.AddPotionUpdate(potion);
         
     }
 
     private void AddGranade(Item item)
     {
-        granade += item.value;
+        granade++;
+        UiManager.instance.AddPotionUpdate(granade);
     }
+
+
 
 
     public bool UseAmmo(int amount)
@@ -133,6 +146,23 @@ public class Inventory : MonoBehaviour , IReloadAmmo
 
         ammo -= amount;
         UiManager.instance.AmmoHudUpdate(ammo);
+        return true;
+    }
+
+    public bool UsePotion()
+    {
+        if(potion <= 0)
+            return false;
+        
+        playerInfo.AddHp(potionValue);
+        potion--;
+        UiManager.instance.AddPotionUpdate(potion);
+        return true;
+    }
+
+    public bool UseGranade()
+    {
+
         return true;
     }
 

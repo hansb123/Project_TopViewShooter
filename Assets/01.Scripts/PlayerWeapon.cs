@@ -31,7 +31,6 @@ public abstract class PlayerWeapon : MonoBehaviour
         //조준선과 조준은 별개 
         CrossHairLaser();
         LookAtMouse();
-        ThrowGranade();
         UiManager.instance.FireHudUpdate(currentFire / fireRate);
     }
 
@@ -66,14 +65,7 @@ public abstract class PlayerWeapon : MonoBehaviour
 
     }
 
-    private void ThrowGranade()
-    {
-        if(Keyboard.current.qKey.wasPressedThisFrame)
-        {
-
-        }
-
-    }
+  
 
    
 

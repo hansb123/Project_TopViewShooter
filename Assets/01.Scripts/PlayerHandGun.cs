@@ -3,14 +3,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerHandGun : PlayerWeapon
 {
-    //TODO : 가지고 있어야할 값들 => 탄약(재장전 필요)
+   
 
-    private IReloadAmmo reloadAmmo;
+    private Iinventory reloadAmmo;
 
     protected override void Start()
     {
         base.Start();
-        reloadAmmo = GetComponentInParent<IReloadAmmo>();
+        reloadAmmo = GetComponentInParent<Iinventory>();
         camera = Camera.main;
       
     }
@@ -46,7 +46,7 @@ public class PlayerHandGun : PlayerWeapon
 
             if (currentFire >= fireRate)
             {
-                //이곳에 현재 잔존탄약코드넣기 
+                
                 isFire = true;
             }
 
@@ -59,7 +59,7 @@ public class PlayerHandGun : PlayerWeapon
 
         if (isFire && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if(TryUseAmmo())
+            if(TryUseAmmo()) //=탄약을 사용할 수 있는지 
             Attack();
 
         }
@@ -88,13 +88,13 @@ public class PlayerHandGun : PlayerWeapon
        
     }
 
-    public void SetAmmo(IReloadAmmo ammo)
+    public void SetAmmo(Iinventory ammo)
     {
         reloadAmmo = ammo;
     }
 
     private bool TryUseAmmo()
     {
-        return reloadAmmo.UseAmmo(1);
+        return reloadAmmo.UseAmmo(1);//탄약 1발 사용 => 무기 추가 확장성 
     }
 }

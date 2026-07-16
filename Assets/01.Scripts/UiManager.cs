@@ -9,8 +9,16 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] Slider isFire;
     [SerializeField] Slider isReload;
+    [SerializeField] Slider stamina;
 
     [SerializeField] TextMeshProUGUI ammoText;
+    [SerializeField] TextMeshProUGUI potionText;
+    [SerializeField] TextMeshProUGUI hpText;
+    [SerializeField] TextMeshProUGUI granadeText;
+
+    // PlayerInfo playerinfo;  => 멘토링 => 리팩토링 
+    // PlayerInfo.OnHPchanged += HpHudUpdate;
+
 
     private void Awake()
     {
@@ -23,10 +31,9 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
+ 
+    
+ 
 
 
     public void FireHudUpdate(float fireRate) //사격 속도
@@ -41,9 +48,18 @@ public class UiManager : MonoBehaviour
 
 
 
-    public void HpHudUpdate(float _hp)
+    public void HpHudUpdate(int _hp)
     {
+        hpText.text = $"{_hp}";
+    }
+    public void StaminaHudUpdate(float _stamina)
+    {
+        stamina.value = _stamina;
+    }
 
+    public void AddPotionUpdate(int potion)
+    {
+        potionText.text = $"{potion}";
     }
 
     public void AmmoHudUpdate(int _ammo)
@@ -53,7 +69,7 @@ public class UiManager : MonoBehaviour
 
     public void GranadeHudUpdate(int _granade)
     {
-
+        granadeText.text = $"{_granade}";
     }
 
 
