@@ -7,6 +7,11 @@ public class MonsterReturnState : MonsterBaseState
     public override void Update()
     {
         Debug.Log("ReturnState 실행되는중 ");
+
+        if(monster.IsArrivePosition())
+        {
+            stateMachine.ChangeState(stateMachine.patrolState);
+        }
     }
 
     public override void FixedUpdate()

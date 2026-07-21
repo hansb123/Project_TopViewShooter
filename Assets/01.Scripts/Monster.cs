@@ -138,11 +138,7 @@ public class Monster : MonoBehaviour
        
     }
 
-    public void Return()
-    {
-
-    }
-
+   
 
     public void RestSightTimer()
     {
@@ -157,16 +153,31 @@ public class Monster : MonoBehaviour
         return sightTimer >= monsterData.traceTime;
     }
 
-
-    public void ReturnPosition()
+    public void Return()
     {
+        Vector2 dir = (startPosition - rb.position).normalized;
 
+        Lookat(dir);
+
+        rb.linearVelocity = dir * monsterData.returnSpeed;
+
+        if(Vector2.Distance(rb.position, startPosition) <0.1f)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+
+    }
+
+
+    public bool IsArrivePosition()
+    {
+        return Vector2.Distance(rb.position, startPosition) < 0.1f;
     }
 
 
 
 
-    public bool IsAttack()
+    public bool IsAttackRange()
     {
         return true;
     }
@@ -234,6 +245,7 @@ public class Monster : MonoBehaviour
     //    stateMachine.ChangeState(stateMachine.traceState); //주위 몬스터의 FSM 변경 
     //}
 
+
     public void SpeedReset()
     {
         Debug.Log("SpeedReset실행됨");
@@ -250,7 +262,7 @@ public class Monster : MonoBehaviour
 
 
 
-    //TODO : 빌드전 삭제 
+    //TODO : 빌드전 삭제 (Gizmo는 전부 Ai사용함)
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

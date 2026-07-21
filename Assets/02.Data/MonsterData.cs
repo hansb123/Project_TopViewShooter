@@ -33,6 +33,7 @@ public class MonsterData : ScriptableObject
     [Header("Movement")]
     public float tracespeed; //추적 속도
     public float patrolSpeed; //정찰 속도 
+    public float returnSpeed = 15f;
 
     [Header("Sight")]
     public float viewDistance = 10f; //Monster Fov 사거리  

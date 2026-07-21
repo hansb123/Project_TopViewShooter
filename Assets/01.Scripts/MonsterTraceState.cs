@@ -14,19 +14,19 @@ public class MonsterTraceState : MonsterBaseState
     {
         if(monster.CanSeePlayer())
         {
-            monster.IsSightTimeOver();
+            monster.RestSightTimer(); //시간 초기화 
 
-            if(monster.IsAttack())//공격사거리가 된다면 
-            {
-                stateMachine.ChangeState(stateMachine.attackState);
-            }
+            //if(monster.IsAttackRange())//공격사거리가 된다면 
+            //{
+            //    stateMachine.ChangeState(stateMachine.attackState);
+            //}
 
             return;
             
         }
 
 
-        if(monster.IsSightTimeOver())
+        if(monster.IsSightTimeOver()) //시야를 놓쳤을때, 
         {
             stateMachine.ChangeState(stateMachine.returnState);
         }
