@@ -75,6 +75,7 @@ public class PlayerHandGun : PlayerWeapon
         bullet.transform.rotation = transform.rotation;
 
 
+        //데미지, 스피드, 사거리 값을 발사체에 전달 
         bullet.Init
             (
             weaponData.damage,

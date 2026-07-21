@@ -12,12 +12,10 @@ enum WeaponType
 }
 public class PlayerInfo : MonoBehaviour
 {
+    //TODO : 이벤트로 관리 => 서버가 추가되는 것이라면 해야하는 것, 그러나 지금처럼 규모가 적은 프로젝트에선 굳이?  =>  시간 남으면 리팩토링 
     public event Action<int> OnHpChanged;
     public event Action<float> OnStaminaChanged;
 
-    //UiManager => PalyerInfo의 OnHpChanged, OnStaminaChanged 구독을 하느냐
-
-    //PlayerInfo => UiManager의 싱글톤을 사용하느냐.차이 => 뭐가 좋은 코딩인지, 확인 후 리팩토링 진행 
 
 
     int hp;
@@ -36,6 +34,8 @@ public class PlayerInfo : MonoBehaviour
         staminaRecovery = 10f;
         UiManager.instance.HpHudUpdate(hp);
     }
+
+
 
     void UpdateHp()
     {
@@ -56,6 +56,8 @@ public class PlayerInfo : MonoBehaviour
         {
             stamina = maxStamina;
         }
+
+
         UiManager.instance.StaminaHudUpdate(stamina / maxStamina);
 
 
@@ -71,7 +73,13 @@ public class PlayerInfo : MonoBehaviour
         else if (stamina >= amount)
         {
             stamina -= amount;
+
+            // 여기서 직접호출 하지않고 변경됨을 알림 (이벤트) => 여기서 UiManager 호출 ?
             UiManager.instance.StaminaHudUpdate(stamina / maxStamina);
+
+            //OnStaminaChanged?.Invoke(stamina / maxStamina);
+
+
             return true;
 
         }
@@ -111,6 +119,9 @@ public class PlayerInfo : MonoBehaviour
         }
         UiManager.instance.HpHudUpdate(hp);
     }
+
+   
+
 
 
 }

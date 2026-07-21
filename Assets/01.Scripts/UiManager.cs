@@ -16,8 +16,9 @@ public class UiManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI granadeText;
 
-    // PlayerInfo playerinfo;  => 멘토링 => 리팩토링 
-    // PlayerInfo.OnHPchanged += HpHudUpdate;
+    [SerializeField] GameObject itemGetText;
+
+ 
 
 
     private void Awake()
@@ -31,9 +32,12 @@ public class UiManager : MonoBehaviour
         }
     }
 
- 
-    
- 
+
+    private void Start()
+    {
+        itemGetText.SetActive(false);
+    }
+
 
 
     public void FireHudUpdate(float fireRate) //사격 속도
@@ -48,30 +52,46 @@ public class UiManager : MonoBehaviour
 
 
 
-    public void HpHudUpdate(int _hp)
+    public void HpHudUpdate(int _hp) //Hp갱신 
     {
         hpText.text = $"{_hp}";
     }
-    public void StaminaHudUpdate(float _stamina)
+
+    public void StaminaHudUpdate(float _stamina) //스테미너 게이지 
     {
         stamina.value = _stamina;
     }
 
-    public void AddPotionUpdate(int potion)
+    public void AddPotionUpdate(int potion) //포션 개수 관리 
     {
         potionText.text = $"{potion}";
     }
 
-    public void AmmoHudUpdate(int _ammo)
+    public void AmmoHudUpdate(int _ammo) //탄약 관리 
     {
         ammoText.text = $"{_ammo}";
     }
 
-    public void GranadeHudUpdate(int _granade)
+    public void GranadeHudUpdate(int _granade) //TODO : 폭탄 개수 => 추후 스테미너 포션으로 변경 예정 
     {
         granadeText.text = $"{_granade}";
     }
 
+
+    public void GetItemText() //아이템 (상호작용) => 인터페이스로 리팩토링 진행 예정 
+    {
+        itemGetText.SetActive(true);
+    }
+
+    public void HideItemText() //아이템 (상호작용) => 인터페이스로 리팩토링 진행 예정
+    {
+        itemGetText.SetActive(false);
+    }
+
+    public void MonsterHpUi()
+    {
+
+    }
 
 
 

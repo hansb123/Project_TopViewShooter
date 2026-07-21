@@ -53,7 +53,9 @@ public class PlayerBow : PlayerWeapon
     //차지, 공격
     protected override void Attack()
     {
-        Arrow arrow = ObjectPoolManager.instance.GetObject<Arrow>("Arrow");
+        
+        //키값으로 관리하는것도 괜찮다. 직관적으로 잘 보이니까 괜찮은 방법중 하나이다.
+        Arrow arrow = ObjectPoolManager.instance.GetObject<Arrow>("Arrow");  
         arrow.transform.position = firePos.position;
         arrow.transform.rotation = transform.rotation;
 
