@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        movespeed = 5;
-        sprintSpeed = 8;
+        movespeed = 8;
+        sprintSpeed = 12;
         playerInfo = GetComponent<PlayerInfo>();
         inventory = GetComponentInParent<Iinventory>();
     }

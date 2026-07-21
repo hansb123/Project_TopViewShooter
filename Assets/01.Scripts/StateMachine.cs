@@ -4,7 +4,7 @@ public interface IState
     public void Enter();
     public void Exit();
     public void Update();
-
+    public void FixedUpdate();
 }
 public abstract class StateMachine
 {
@@ -23,6 +23,12 @@ public abstract class StateMachine
         
         currentState?.Update();
     }  //현재상태의 Update 실행 
+
+    public void FixedUpdate()
+    {
+        currentState?.FixedUpdate();
+        //물리의 경우 FixedUpdate에서 해야하므로 
+    }
 
     
 }

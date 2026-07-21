@@ -46,5 +46,12 @@ public class MonsterData : ScriptableObject
     [Header("Drop")]
     public Item dropItem; //드랍 아이템 고정 
 
+    [Header("Return")]
+    public float traceTime = 3f;
+
+    //[Header("alert")]
+    //public float alertRadius = 20f; //주위 몬스터의 알림 반경
+
+
    
 }

@@ -16,12 +16,13 @@ MonoBehaviour:
   type: 0
   maxHp: 100
   damage: 50
-  attackRange: 3
+  attackRange: 0.5
   attackCoolTime: 0.5
-  tracespeed: 10
-  patrolSpeed: 5
+  tracespeed: 4
+  patrolSpeed: 2.5
   viewDistance: 10
   viewAngle: 90
   patrolDistance: 10
   horizontalPatrol: 1
   dropItem: {fileID: 0}
+  traceTime: 3

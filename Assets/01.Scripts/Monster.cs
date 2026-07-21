@@ -11,6 +11,11 @@ public class Monster : MonoBehaviour
 {
     [SerializeField] MonsterData monsterData;
     [SerializeField] LayerMask obstacleLayer;
+    [SerializeField] LayerMask monsterLayer;
+
+    float sightTimer;
+
+    //float rotateSpeed = 360f; //부드럽게 회전 
 
     Rigidbody2D rb;
 
@@ -24,8 +29,7 @@ public class Monster : MonoBehaviour
     Vector2 startPosition;
     bool isForward = true;
 
-    private float viewDistance = 10f; // 이후 값 수정 
-    private float viewAngle = 90f;
+ 
 
 
     private void Awake()
@@ -44,9 +48,18 @@ public class Monster : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         stateMachine.Update();
+    }
+    private void FixedUpdate()
+    {
+        stateMachine.FixedUpdate();
+    }
+
+    private void Lookat(Vector2 dir) //회전 (보고있는방향)
+    {
+        transform.right = dir;
     }
 
 
@@ -55,11 +68,20 @@ public class Monster : MonoBehaviour
     {
         Vector2 target = GetPatrolTarget();
 
+        Vector2 dir = (target - rb.position).normalized;
 
-        transform.position = Vector2.MoveTowards(transform.position, target, monsterData.patrolSpeed * Time.deltaTime);
+        Lookat(dir);
+
+    
+
+        Vector2 nextPos = Vector2.MoveTowards(transform.position, target, monsterData.patrolSpeed * Time.deltaTime);
+
+        rb.MovePosition(nextPos);
+
 
         if(Vector2.Distance(transform.position, target) < 0.1f)
         {
+           
             isForward = !isForward;
         }
 
@@ -92,13 +114,62 @@ public class Monster : MonoBehaviour
 
     public void Trace()
     {
-        //CanseePlayer() => 시야에 유저가 있다면 추적시간 계속해서 갱신
-        //
+       
+
+
+        if (target == null)
+            return;
+
+
+
+        if (Vector2.Distance(rb.position, target.position) <= monsterData.attackRange)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
+        Vector2 dir = ((Vector2)target.position - rb.position).normalized;
+
+        transform.right = dir;
+
+
+        Lookat(dir);
+        rb.linearVelocity = dir * monsterData.tracespeed;
+       
+    }
+
+    public void Return()
+    {
+
+    }
+
+
+    public void RestSightTimer()
+    {
+        sightTimer = 0f;
+
+    }
+
+
+    public bool IsSightTimeOver() //시야에서 벗어난지 n초 후 추적을 중단 
+    {
+        sightTimer += Time.deltaTime;
+        return sightTimer >= monsterData.traceTime;
+    }
+
+
+    public void ReturnPosition()
+    {
+
     }
 
 
 
 
+    public bool IsAttack()
+    {
+        return true;
+    }
 
     public virtual void Attack()
     {
@@ -107,12 +178,17 @@ public class Monster : MonoBehaviour
 
 
 
+
+
+
+
+
     public bool CanSeePlayer()
     {
         // 거리 검사 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        if (distance > viewDistance)
+        if (distance > monsterData.viewDistance)
             return false;
 
         Vector2 dir = (player.transform.position - transform.position).normalized;
@@ -120,11 +196,11 @@ public class Monster : MonoBehaviour
         //시야각 
         float angle = Vector2.Angle(transform.right, dir);
 
-        if (angle > viewAngle * 0.5f)
+        if (angle > monsterData.viewAngle * 0.5f)
             return false;
 
         //벽 검사 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewDistance, obstacleLayer); 
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, monsterData.viewDistance, obstacleLayer); 
 
         //Raycast가 만약 벽에(먼저) 맞았다면, 플레이어를 볼 수없다. 
         if (hit.collider != null)
@@ -137,14 +213,31 @@ public class Monster : MonoBehaviour
         return true;
     }
 
-    public void AlertNearbyMonster()
+    //public void AlertNearbyMonster() //주위 몬스터에게 알림 
+    //{
+    //    Collider2D[] monsters = Physics2D.OverlapCircleAll(transform.position, monsterData.alertRadius, monsterLayer);
+
+    //    foreach(Collider2D col in monsters)
+    //    {
+    //        Monster monster = col.GetComponent<Monster>();
+
+    //        if (monster == null || monster == this)
+    //            continue;
+
+    //        monster.Alert(player);
+    //    }
+    //}
+
+    //public void Alert(Transform player) 
+    //{
+    //    target = player;
+    //    stateMachine.ChangeState(stateMachine.traceState); //주위 몬스터의 FSM 변경 
+    //}
+
+    public void SpeedReset()
     {
-
-    }
-
-    public void Alert(Transform player)
-    {
-
+        Debug.Log("SpeedReset실행됨");
+        rb.linearVelocity = Vector2.zero;
     }
 
 
@@ -164,10 +257,10 @@ public class Monster : MonoBehaviour
 
         Vector3 origin = transform.position;
 
-        float halfAngle = viewAngle * 0.5f;
+        float halfAngle = monsterData.viewAngle * 0.5f;
         int segment = 30;
 
-        Vector3 prevPoint = origin + Quaternion.Euler(0, 0, -halfAngle) * transform.right * viewDistance;
+        Vector3 prevPoint = origin + Quaternion.Euler(0, 0, -halfAngle) * transform.right * monsterData.viewDistance;
 
 
         for (int i = 1; i <= segment; i++)
@@ -175,7 +268,7 @@ public class Monster : MonoBehaviour
             float angle = Mathf.Lerp(-halfAngle, halfAngle, i / (float)segment);
 
             Vector3 nextPoint = origin +
-                Quaternion.Euler(0, 0, angle) * transform.right * viewDistance;
+                Quaternion.Euler(0, 0, angle) * transform.right * monsterData.viewDistance;
 
             Gizmos.DrawLine(prevPoint, nextPoint);
 
@@ -184,10 +277,10 @@ public class Monster : MonoBehaviour
 
         // 양쪽 선
         Gizmos.DrawLine(origin,
-            origin + Quaternion.Euler(0, 0, -halfAngle) * transform.right * viewDistance);
+            origin + Quaternion.Euler(0, 0, -halfAngle) * transform.right * monsterData.viewDistance);
 
         Gizmos.DrawLine(origin,
-            origin + Quaternion.Euler(0, 0, halfAngle) * transform.right * viewDistance);
+            origin + Quaternion.Euler(0, 0, halfAngle) * transform.right * monsterData.viewDistance);
     }
 
 

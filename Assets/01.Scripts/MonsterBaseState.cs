@@ -25,6 +25,11 @@ public class MonsterBaseState : IState
 
     }
 
+    public virtual void FixedUpdate()
+    {
+
+    }
+
 
     public virtual void Exit()
     {

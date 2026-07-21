@@ -4,6 +4,7 @@ public class MonsterStateMachine : StateMachine
 
     public MonsterPatrolState patrolState;
     public MonsterAttackState attackState;
+    public MonsterReturnState returnState;
     public MonsterTraceState traceState;
 
 
@@ -11,6 +12,7 @@ public class MonsterStateMachine : StateMachine
     {
         traceState = new MonsterTraceState(monster,this);
         patrolState = new MonsterPatrolState(monster,this);
+        returnState = new MonsterReturnState(monster, this);
         attackState = new MonsterAttackState(monster, this);
 
 
