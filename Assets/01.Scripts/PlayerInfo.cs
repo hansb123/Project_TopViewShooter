@@ -22,6 +22,7 @@ public class PlayerInfo : MonoBehaviour, IDamageable
     float staminaConsum;
     float staminaRecovery;
     int defense;
+    
 
     private void Start()
     {
@@ -87,22 +88,33 @@ public class PlayerInfo : MonoBehaviour, IDamageable
    
     public void UpdateDefense(Item helmet, Item chest, Item leg) //defenseº¯°æ.
     {
+        int helmetValue = 0;
+        int chestValue = 0;
+        int legValue = 0;
         defense = 0;
 
         if(helmet != null)
         {
+            helmetValue = helmet.value;
             defense += helmet.value;
+            
         }
 
         if(chest != null)
         {
+            chestValue = chest.value;
             defense += chest.value;
         }
 
         if(leg != null)
         {
+            legValue = leg.value;
             defense += leg.value;
         }
+
+        UiManager.instance.EquipText(helmetValue, chestValue, legValue);
+
+
     }
 
     public void AddHp(int _potionValue)

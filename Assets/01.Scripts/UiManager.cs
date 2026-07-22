@@ -16,6 +16,13 @@ public class UiManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI granadeText;
 
+    [SerializeField] TextMeshProUGUI helmetText;
+    [SerializeField] TextMeshProUGUI chestText;
+    [SerializeField] TextMeshProUGUI legText;
+
+  //  [SerializeField] TextMeshProUGUI nowDefenceText;
+
+
     [SerializeField] GameObject itemGetText;
 
  
@@ -77,6 +84,17 @@ public class UiManager : MonoBehaviour
         granadeText.text = $"{_granade}";
     }
 
+    public void EquipText(int helmet, int chest, int leg)
+    {
+        helmetText.text = $"{helmet}";
+
+        chestText.text = $"{chest}";
+
+        legText.text = $"{leg}";
+
+       //nowDefenceText.text = $"{helmet + chest + leg}";
+    }
+
 
     public void GetItemText() //아이템 (상호작용) => 인터페이스로 리팩토링 진행 예정 
     {
@@ -87,6 +105,8 @@ public class UiManager : MonoBehaviour
     {
         itemGetText.SetActive(false);
     }
+
+   
 
     public void MonsterHpUi()
     {
