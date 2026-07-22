@@ -13,6 +13,8 @@ public class Monster : MonoBehaviour
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] LayerMask monsterLayer;
 
+    [SerializeField] MonsterWeapon monsterWeapon;
+
     float sightTimer;
 
     //float rotateSpeed = 360f; //부드럽게 회전 
@@ -74,7 +76,7 @@ public class Monster : MonoBehaviour
 
     
 
-        Vector2 nextPos = Vector2.MoveTowards(transform.position, target, monsterData.patrolSpeed * Time.deltaTime);
+        Vector2 nextPos = Vector2.MoveTowards(rb.position, target, monsterData.patrolSpeed * Time.deltaTime);
 
         rb.MovePosition(nextPos);
 
@@ -130,8 +132,6 @@ public class Monster : MonoBehaviour
 
         Vector2 dir = ((Vector2)target.position - rb.position).normalized;
 
-        transform.right = dir;
-
 
         Lookat(dir);
         rb.linearVelocity = dir * monsterData.tracespeed;
@@ -179,12 +179,15 @@ public class Monster : MonoBehaviour
 
     public bool IsAttackRange()
     {
-        return true;
+        if (target == null)
+            return false;
+
+        return Vector2.Distance(rb.position, target.position) <= monsterData.attackRange;
     }
 
     public virtual void Attack()
     {
-
+        monsterWeapon.Attack();
     }
 
 

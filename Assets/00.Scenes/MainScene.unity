@@ -995,7 +995,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &581195745
+--- !u!1001 &612373022
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1009,11 +1009,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5507539282185069271, guid: e9fc64fad748510478e260aec8341c6e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.86078
+      value: -4.10245
       objectReference: {fileID: 0}
     - target: {fileID: 5507539282185069271, guid: e9fc64fad748510478e260aec8341c6e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.38259
+      value: 7.04105
       objectReference: {fileID: 0}
     - target: {fileID: 5507539282185069271, guid: e9fc64fad748510478e260aec8341c6e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1051,10 +1051,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2059971775}
-    - target: {fileID: 7661246182459572552, guid: e9fc64fad748510478e260aec8341c6e, type: 3}
-      propertyPath: monsterLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5009,4 +5005,4 @@ SceneRoots:
   - {fileID: 1304436095}
   - {fileID: 2472418635623207122}
   - {fileID: 195233039}
-  - {fileID: 581195745}
+  - {fileID: 612373022}

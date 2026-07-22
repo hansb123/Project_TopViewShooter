@@ -111,6 +111,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  monsterWeapon: {fileID: 5969100348803399934}
   player: {fileID: 0}
 --- !u!50 &8708975364876608050
 Rigidbody2D:
@@ -185,6 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1292225834785760184}
   - component: {fileID: 6291461616603239916}
+  - component: {fileID: 5969100348803399934}
   m_Layer: 0
   m_Name: MonsterWeapon
   m_TagString: Untagged
@@ -266,3 +271,15 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &5969100348803399934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925854817087741763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336057dce5cf4914ba56882eb888c746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterWeapon

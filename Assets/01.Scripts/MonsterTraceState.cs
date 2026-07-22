@@ -16,10 +16,10 @@ public class MonsterTraceState : MonsterBaseState
         {
             monster.RestSightTimer(); //시간 초기화 
 
-            //if(monster.IsAttackRange())//공격사거리가 된다면 
-            //{
-            //    stateMachine.ChangeState(stateMachine.attackState);
-            //}
+            if(monster.IsAttackRange())//공격사거리가 된다면 
+            {
+                stateMachine.ChangeState(stateMachine.attackState);
+            }
 
             return;
             

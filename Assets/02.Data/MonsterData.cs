@@ -22,7 +22,7 @@ public class MonsterData : ScriptableObject
 
     [Header("Status")]
     public float maxHp;
-    public int damage;
+    //public int damage;// WeaponData 
 
   
     [Header("Combat")]
