@@ -27,7 +27,7 @@ public class MonsterData : ScriptableObject
   
     [Header("Combat")]
     public float attackRange;  // 사거리
-    public float attackCoolTime; // 공격 쿨타임
+   
 
 
     [Header("Movement")]

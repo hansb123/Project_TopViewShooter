@@ -6,7 +6,7 @@ public class MonsterTraceState : MonsterBaseState
 
     public override void Enter() 
     {
-        monster.SpeedReset();
+       // monster.SpeedReset();
     }
 
 

@@ -9,21 +9,27 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour 
 {
-    [SerializeField] MonsterData monsterData;
+    [SerializeField] MonsterData monsterData; //scriptable (몬스터의 속성)
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] LayerMask monsterLayer;
 
-    [SerializeField] MonsterWeapon monsterWeapon;
+
+    [SerializeField] protected MonsterWeaponData monsterWeaponData; //scriptable (몬스터 무기의 속성)
 
     float sightTimer;
+    float attackCooldownTimer;
+
+
+
+
 
     //float rotateSpeed = 360f; //부드럽게 회전 
 
-    Rigidbody2D rb;
-
+    protected Rigidbody2D rb;
+    protected Transform target;
 
     [SerializeField] Transform player;
-    Transform target;
+    
 
     MonsterStateMachine stateMachine;
 
@@ -52,12 +58,27 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if(attackCooldownTimer > 0f)
+        {
+            attackCooldownTimer -= Time.deltaTime;
+        }
         stateMachine.Update();
     }
     private void FixedUpdate()
     {
         stateMachine.FixedUpdate();
     }
+
+    public bool CanAttack() //공격이 가능하다면 
+    {
+        return attackCooldownTimer <= 0f;
+    }
+
+    protected void StartAttackCooldown()
+    {
+        attackCooldownTimer = monsterWeaponData.attackCoolTime;
+    }
+
 
     private void Lookat(Vector2 dir) //회전 (보고있는방향)
     {
@@ -114,7 +135,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void Trace()
+    public void Trace() //추적
     {
        
 
@@ -140,7 +161,7 @@ public class Monster : MonoBehaviour
 
    
 
-    public void RestSightTimer()
+    public void RestSightTimer() //타이머 초기화 
     {
         sightTimer = 0f;
 
@@ -153,7 +174,7 @@ public class Monster : MonoBehaviour
         return sightTimer >= monsterData.traceTime;
     }
 
-    public void Return()
+    public void Return() //시야에서 벗어났을 때 , 제자리 복귀
     {
         Vector2 dir = (startPosition - rb.position).normalized;
 
@@ -177,7 +198,7 @@ public class Monster : MonoBehaviour
 
 
 
-    public bool IsAttackRange()
+    public bool IsAttackRange()//사거리에 들어왔다면, Attack 실행하는 함수 
     {
         if (target == null)
             return false;
@@ -185,9 +206,16 @@ public class Monster : MonoBehaviour
         return Vector2.Distance(rb.position, target.position) <= monsterData.attackRange;
     }
 
+
+
+
+   
+
+
+
     public virtual void Attack()
     {
-        monsterWeapon.Attack();
+        
     }
 
 
@@ -223,7 +251,7 @@ public class Monster : MonoBehaviour
         target = player;
 
 
-        Debug.Log("플레이어 감지함");
+        // Debug.Log("플레이어 감지함");
         return true;
     }
 
@@ -251,11 +279,14 @@ public class Monster : MonoBehaviour
 
     public void SpeedReset()
     {
-        Debug.Log("SpeedReset실행됨");
+        //Debug.Log("SpeedReset실행됨");
         rb.linearVelocity = Vector2.zero;
     }
 
-
+    public virtual bool IsAttackEnd()
+    {
+        return true;
+    }
 
 
 

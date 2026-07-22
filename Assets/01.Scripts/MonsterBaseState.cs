@@ -15,7 +15,7 @@ public class MonsterBaseState : IState
 
     public virtual void Enter()
     {
-
+     
 
     }
 

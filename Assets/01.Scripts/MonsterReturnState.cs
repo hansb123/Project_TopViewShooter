@@ -19,4 +19,9 @@ public class MonsterReturnState : MonsterBaseState
         monster.Return();
     }
 
+    public override void Exit()
+    {
+        monster.SpeedReset();
+    }
+
 }
