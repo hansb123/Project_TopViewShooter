@@ -29,9 +29,14 @@ public class MelleMonster : Monster
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-      
+        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+
+      if(collision.gameObject.layer ==LayerMask.NameToLayer("Player"))
+        {
+            damageable.TakeDamage(monsterWeaponData.damage);
+        }
     }
 
     public override bool IsAttackEnd()

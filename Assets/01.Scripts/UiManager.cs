@@ -52,7 +52,7 @@ public class UiManager : MonoBehaviour
 
 
 
-    public void HpHudUpdate(int _hp) //Hp갱신 
+    public void HpHudUpdate(float _hp) //Hp갱신 
     {
         hpText.text = $"{_hp}";
     }

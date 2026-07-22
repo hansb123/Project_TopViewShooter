@@ -7,7 +7,7 @@ using UnityEngine;
 // Patrol() , Return() ,  Attack() ,  Trace() 등 
 
 
-public class Monster : MonoBehaviour 
+public class Monster : MonoBehaviour , IDamageable
 {
     [SerializeField] MonsterData monsterData; //scriptable (몬스터의 속성)
     [SerializeField] LayerMask obstacleLayer;
@@ -204,6 +204,11 @@ public class Monster : MonoBehaviour
             return false;
 
         return Vector2.Distance(rb.position, target.position) <= monsterData.attackRange;
+    }
+
+    public void TakeDamage(float dmg)
+    {
+
     }
 
 

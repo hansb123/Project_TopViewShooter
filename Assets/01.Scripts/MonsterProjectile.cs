@@ -65,7 +65,12 @@ public class MonsterProjectile : MonoBehaviour
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Debug.Log($"준 데미지 :{damage}");
+            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            if(damageable != null)
+            {
+                damageable.TakeDamage(damage);
+            }
+
             ReturnPool();
         }
 

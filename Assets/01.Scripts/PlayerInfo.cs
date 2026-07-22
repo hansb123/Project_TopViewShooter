@@ -2,15 +2,13 @@ using UnityEngine;
 using System;
 
 
-
-
 enum WeaponType
 {
     Bow,
     HandGun,
     MiniGun
 }
-public class PlayerInfo : MonoBehaviour
+public class PlayerInfo : MonoBehaviour, IDamageable
 {
     //TODO : 이벤트로 관리 => 서버가 추가되는 것이라면 해야하는 것, 그러나 지금처럼 규모가 적은 프로젝트에선 굳이?  =>  시간 남으면 리팩토링 
     public event Action<int> OnHpChanged;
@@ -18,7 +16,7 @@ public class PlayerInfo : MonoBehaviour
 
 
 
-    int hp;
+    float hp;
     float stamina;
     float maxStamina; 
     float staminaConsum;
@@ -37,10 +35,7 @@ public class PlayerInfo : MonoBehaviour
 
 
 
-    void UpdateHp()
-    {
-
-    }
+ 
 
     private void Update()
     {
@@ -117,6 +112,12 @@ public class PlayerInfo : MonoBehaviour
         {
             hp = 100;
         }
+        UiManager.instance.HpHudUpdate(hp);
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        hp -= dmg;
         UiManager.instance.HpHudUpdate(hp);
     }
 
