@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
-            inventory.UseGranade(); //폭탄 => use의 개념? => player가 직접 던지는 것이므로, player에서 나가는게 맞나? 
+            inventory.UseStaminaPotion(); //폭탄 => use의 개념? => player가 직접 던지는 것이므로, player에서 나가는게 맞나? 
         }
     }
 

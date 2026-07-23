@@ -45,7 +45,7 @@ public class MonsterData : ScriptableObject
     public bool horizontalPatrol = true; //정찰 => 좌우 기본값 (false => 상하)
 
     [Header("Drop")]
-    public Item dropItem; //드랍 아이템 고정 
+    public GameObject dropItem; //드랍 아이템 고정 
 
     [Header("Return")]
     public float traceTime = 3f;

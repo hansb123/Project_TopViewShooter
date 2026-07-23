@@ -127,9 +127,20 @@ public class PlayerInfo : MonoBehaviour, IDamageable
         UiManager.instance.HpHudUpdate(hp);
     }
 
+    public void AddStamina(int _staminaValue)
+    {
+        stamina += _staminaValue;
+        if (stamina >= 100)
+        {
+            stamina = 100f;
+        }
+        UiManager.instance.StaminaHudUpdate(stamina);
+    }
+
     public void TakeDamage(float dmg)
     {
-        hp -= dmg;
+        
+        hp -= (dmg-defense);
         UiManager.instance.HpHudUpdate(hp);
     }
 

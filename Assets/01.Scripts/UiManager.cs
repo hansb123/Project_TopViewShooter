@@ -11,10 +11,12 @@ public class UiManager : MonoBehaviour
     [SerializeField] Slider isReload;
     [SerializeField] Slider stamina;
 
+   
+
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI potionText;
     [SerializeField] TextMeshProUGUI hpText;
-    [SerializeField] TextMeshProUGUI granadeText;
+    [SerializeField] TextMeshProUGUI staminaText;
 
     [SerializeField] TextMeshProUGUI helmetText;
     [SerializeField] TextMeshProUGUI chestText;
@@ -79,9 +81,9 @@ public class UiManager : MonoBehaviour
         ammoText.text = $"{_ammo}";
     }
 
-    public void GranadeHudUpdate(int _granade) //TODO : 폭탄 개수 => 추후 스테미너 포션으로 변경 예정 
+    public void StaminaPotionHudUpdate(int _stamina) //TODO : 폭탄 개수 => 추후 스테미너 포션으로 변경 예정 
     {
-        granadeText.text = $"{_granade}";
+        staminaText.text = $"{_stamina}";
     }
 
     public void EquipText(int helmet, int chest, int leg)
@@ -108,10 +110,7 @@ public class UiManager : MonoBehaviour
 
    
 
-    public void MonsterHpUi()
-    {
-
-    }
+    
 
 
 

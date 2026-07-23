@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 // Player를 감지한다면 
 // 감지한 몬스터 +  주변 몬스터 또한 N초간 Player 추적)
 // N초 추적이 끝나고 제자리로 돌아가면 Hp 풀로 회복 + 다시 Patrol 상태 
@@ -13,6 +14,10 @@ public class Monster : MonoBehaviour , IDamageable
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] LayerMask monsterLayer;
 
+    [SerializeField] MonsterHpbar hpBar;
+
+
+    float currenthp;
 
     [SerializeField] protected MonsterWeaponData monsterWeaponData; //scriptable (몬스터 무기의 속성)
 
@@ -46,8 +51,14 @@ public class Monster : MonoBehaviour , IDamageable
         startPosition = transform.position;
         stateMachine = new MonsterStateMachine(this);
 
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
        
      
+    }
+    private void OnEnable()
+    {
+        currenthp = monsterData.maxHp;
     }
 
     private void Start()
@@ -208,13 +219,35 @@ public class Monster : MonoBehaviour , IDamageable
 
     public void TakeDamage(float dmg)
     {
+        currenthp -= dmg;
+
+        hpBar.UpdateHp(currenthp / monsterData.maxHp);
+
+        if(currenthp <= 0)
+        {
+            Die();
+        }
+        //TODO : UI매니저 호출  MonsterHpUi()
+    }
+
+    private void Die() 
+    {
+        if(monsterData.dropItem != null) //죽었을때 드랍할 아이템
+        {
+            Instantiate(
+                monsterData.dropItem,
+                transform.position,
+                Quaternion.identity
+                );
+        }
+        Destroy(gameObject);
 
     }
 
 
 
 
-   
+
 
 
 
