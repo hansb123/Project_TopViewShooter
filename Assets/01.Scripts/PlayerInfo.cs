@@ -26,7 +26,7 @@ public class PlayerInfo : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        hp = 100;
+        hp = 400;
         stamina = 100f;
         maxStamina = stamina;
         staminaConsum = 20f;

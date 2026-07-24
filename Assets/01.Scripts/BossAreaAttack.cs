@@ -3,8 +3,8 @@ using DG.Tweening;
 
 public class BossAreaAttack : MonoBehaviour
 {
-    float maxRadius = 3f;
-    float duration = 2f;
+    float maxRadius = 5f;
+    float duration = 3f;
     [SerializeField]LayerMask playerLayer;
 
     float damage;

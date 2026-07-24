@@ -931,4 +931,3 @@ MonoBehaviour:
   player: {fileID: 0}
   spawn: []
   bossMonsterWeapon: {fileID: 2179393595532616852}
-  bossAreaAttack: {fileID: 0}

@@ -28,6 +28,12 @@ public class BossMonsterWeapon : MonoBehaviour
 
         attackCount++;
 
+        if (attackCount == 2)
+        {
+            FireSingle(dir);
+            AreaAttack(target.position); //장판 공격=> 2번쨰 공격마다 실행 
+        }
+
         if (attackCount < 4) //4번째발 => 광역공격 
         {
             FireSingle(dir);
