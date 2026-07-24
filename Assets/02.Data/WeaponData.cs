@@ -9,6 +9,8 @@ public class WeaponData : ScriptableObject
     public float attackSpeed; //투사체 속도 
 
 
+    //별도의 ProjectileData를 사용하기? 
+
     //PlayerWeapon이 사용할 변수 
     public float fireRate; //활의 경우 활 시위 당기는 시간, 총의경우 장전시간. 
 

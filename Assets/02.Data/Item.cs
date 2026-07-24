@@ -5,7 +5,7 @@ public enum ItemType
     //소모품
     Ammo,
     Potion,
-    Granade,
+    StaminaPotion,
 
     //장착 장비
     Helemet,

@@ -53,20 +53,26 @@ public abstract class Projectile : MonoBehaviour
   
 
     protected abstract void ReturnPool();
-   
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D colison)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        if (colison.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-            Debug.Log($"준 데미지 :{damage}");
-            ReturnPool();
-
-        }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
+           
             ReturnPool();
         }
+        else if (colison.gameObject.layer == LayerMask.NameToLayer("Monster"))
+        {
+            IDamageable damageable = colison.GetComponent<IDamageable>();
 
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage);
+            }
+
+            SoundManager.instance.PlaySFX(SFXType.MonsterHit);
+            ReturnPool();
+        }
     }
 
     public void Init(int dmg, float spd, float rng) 
