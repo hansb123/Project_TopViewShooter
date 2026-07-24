@@ -15,4 +15,4 @@ MonoBehaviour:
   damage: 10
   attackCoolTime: 0.5
   speed: 15
-  range: 15
+  range: 16

@@ -58,7 +58,7 @@ public abstract class Projectile : MonoBehaviour
     {
         if (colison.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-            Debug.Log($"준 데미지 : {damage}");
+           
             ReturnPool();
         }
         else if (colison.gameObject.layer == LayerMask.NameToLayer("Monster"))
@@ -70,7 +70,7 @@ public abstract class Projectile : MonoBehaviour
                 damageable.TakeDamage(damage);
             }
 
-            Debug.Log($"준 데미지 : {damage}");
+            SoundManager.instance.PlaySFX(SFXType.MonsterHit);
             ReturnPool();
         }
     }

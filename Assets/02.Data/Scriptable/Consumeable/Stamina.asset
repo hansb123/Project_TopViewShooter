@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45233ab34ecf174fa857a4e11d75fa0, type: 3}
   m_Name: Stamina
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: 
+  itemName: StaminaPotion
   itemImage: {fileID: -6487830643137908271, guid: e37f119263ac45746a716149fa4fe309, type: 3}
-  itemtype: 1
+  itemtype: 2
   itemLevel: 0
-  value: 0
+  value: 100

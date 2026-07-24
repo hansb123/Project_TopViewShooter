@@ -7,6 +7,8 @@ public enum SFXType
     BulletAttack,
     MonsterHit,
 
+    MonsterAttack,
+
     GetItem,
     MonsterDie,
     PlayerHit 

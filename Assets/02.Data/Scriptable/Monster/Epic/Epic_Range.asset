@@ -15,8 +15,8 @@ MonoBehaviour:
   grade: 0
   type: 0
   maxHp: 900
-  attackRange: 20
-  tracespeed: 4
+  attackRange: 13
+  tracespeed: 6
   patrolSpeed: 2.5
   returnSpeed: 15
   viewDistance: 15

@@ -81,7 +81,7 @@ public class UiManager : MonoBehaviour
         ammoText.text = $"{_ammo}";
     }
 
-    public void StaminaPotionHudUpdate(int _stamina) //TODO : 폭탄 개수 => 추후 스테미너 포션으로 변경 예정 
+    public void StaminaPotionHudUpdate(int _stamina) //스태미나 포션 관리
     {
         staminaText.text = $"{_stamina}";
     }

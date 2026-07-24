@@ -27,14 +27,14 @@ public class Inventory : MonoBehaviour , Iinventory
     private Item leg;
 
     private int ammo;
+
     private int potion;
     private int potionValue;
 
     private int staminaPotion;
     private int staminaValue;
 
-    private int granade;
-    private int granadeValue;
+  
 
     
 
@@ -44,7 +44,8 @@ public class Inventory : MonoBehaviour , Iinventory
     {
         ammo = 0;
         potion = 0;
-        granade = 0;
+        staminaPotion = 0;
+
     }
 
 
@@ -99,7 +100,7 @@ public class Inventory : MonoBehaviour , Iinventory
                 break;
 
             case ItemType.StaminaPotion:
-                staminaPotion = item.value; //초기화 1회 
+                staminaValue = item.value; //초기화 1회 
                 AddStaminaPotion(item);
                 break;
 
@@ -137,7 +138,7 @@ public class Inventory : MonoBehaviour , Iinventory
     private void AddStaminaPotion(Item item)
     {
         staminaPotion++;
-
+        UiManager.instance.StaminaPotionHudUpdate(staminaPotion);
     }
 
 

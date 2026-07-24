@@ -120,9 +120,9 @@ public class PlayerInfo : MonoBehaviour, IDamageable
     public void AddHp(int _potionValue)
     {
         hp += _potionValue;
-        if(hp >= 100)
+        if(hp >= 400)
         {
-            hp = 100;
+            hp = 400;
         }
         UiManager.instance.HpHudUpdate(hp);
     }

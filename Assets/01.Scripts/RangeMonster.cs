@@ -8,7 +8,7 @@ public class RangeMonster : Monster
 
     public override void Attack()
     {
-        
+        base.Attack();
         StartAttackCooldown();
         monsterWeapon.Fire(target);
     }

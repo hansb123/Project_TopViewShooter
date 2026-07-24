@@ -185,19 +185,18 @@ public class Monster : MonoBehaviour , IDamageable
         return sightTimer >= monsterData.traceTime;
     }
 
-    public void Return() //시야에서 벗어났을 때 , 제자리 복귀
+    public void Return() //제자리 복귀
     {
         Vector2 dir = (startPosition - rb.position).normalized;
 
         Lookat(dir);
 
-        rb.linearVelocity = dir * monsterData.returnSpeed;
+        Vector2 nextPos = Vector2.MoveTowards(
+            rb.position,
+            startPosition,
+            monsterData.returnSpeed * Time.deltaTime);
 
-        if(Vector2.Distance(rb.position, startPosition) <0.1f)
-        {
-            rb.linearVelocity = Vector2.zero;
-        }
-
+        rb.MovePosition(nextPos);
     }
 
 
@@ -217,17 +216,27 @@ public class Monster : MonoBehaviour , IDamageable
         return Vector2.Distance(rb.position, target.position) <= monsterData.attackRange;
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float dmg) //받는 데미지
     {
         currenthp -= dmg;
 
         hpBar.UpdateHp(currenthp / monsterData.maxHp);
+        Alert(); //데미지를 받으면, 플레이어 추적상태로 변경.
 
         if(currenthp <= 0)
         {
             Die();
         }
-        //TODO : UI매니저 호출  MonsterHpUi()
+        
+    }
+
+    private void Alert() 
+    {
+        target = player;
+        RestSightTimer();
+
+        stateMachine.ChangeState(stateMachine.traceState);
+      
     }
 
     private void Die() 
@@ -246,20 +255,10 @@ public class Monster : MonoBehaviour , IDamageable
 
 
 
-
-
-
-
-
     public virtual void Attack()
     {
-        
+        SoundManager.instance.PlaySFX(SFXType.MonsterAttack);
     }
-
-
-
-
-
 
 
 
@@ -308,11 +307,7 @@ public class Monster : MonoBehaviour , IDamageable
     //    }
     //}
 
-    //public void Alert(Transform player) 
-    //{
-    //    target = player;
-    //    stateMachine.ChangeState(stateMachine.traceState); //주위 몬스터의 FSM 변경 
-    //}
+    
 
 
     public void SpeedReset()

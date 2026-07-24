@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d45233ab34ecf174fa857a4e11d75fa0, type: 3}
-  m_Name: StaminaPotion
+  m_Name: Potion
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: 
-  itemImage: {fileID: 0}
-  itemtype: 2
+  itemName: Poiton
+  itemImage: {fileID: -742081697353132240, guid: 1f925a74ba5cef140ab00915e409e62b, type: 3}
+  itemtype: 1
   itemLevel: 1
-  value: 100
+  value: 200

@@ -8,7 +8,7 @@ public class BossMonster : Monster
    
     public override void Attack()
     {
-
+        base.Attack();
         StartAttackCooldown();
 
         bossMonsterWeapon.Fire(target);

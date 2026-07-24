@@ -99,12 +99,12 @@ public class PlayerController : MonoBehaviour
     {
         if(Keyboard.current.qKey.wasPressedThisFrame)
         {
-            inventory.UsePotion();
+            inventory.UsePotion(); //Q => 포션사용
         }
 
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
-            inventory.UseStaminaPotion(); //폭탄 => use의 개념? => player가 직접 던지는 것이므로, player에서 나가는게 맞나? 
+            inventory.UseStaminaPotion(); //Z => 스태미너 포션 사용 
         }
     }
 

@@ -170,4 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9628fd1f9bfec624cb032a5745a5ce27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
-  item: {fileID: 11400000, guid: d08ecbd870e39f84a91cc5ab3248fec3, type: 2}
+  item: {fileID: 11400000, guid: 6d59f62709968f04cafb46805696f8f4, type: 2}
