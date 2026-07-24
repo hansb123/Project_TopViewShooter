@@ -65,7 +65,7 @@ public class PlayerMiniGun : PlayerWeapon
         Bullet bullet = ObjectPoolManager.instance.GetObject<Bullet>("Bullet");
         bullet.transform.position = firePos.position;
         bullet.transform.rotation = transform.rotation;
-
+        SoundManager.instance.PlaySFX(SFXType.BulletAttack);
 
         bullet.Init
             (

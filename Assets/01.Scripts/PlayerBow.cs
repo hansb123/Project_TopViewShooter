@@ -58,7 +58,7 @@ public class PlayerBow : PlayerWeapon
         Arrow arrow = ObjectPoolManager.instance.GetObject<Arrow>("Arrow");  
         arrow.transform.position = firePos.position;
         arrow.transform.rotation = transform.rotation;
-
+        SoundManager.instance.PlaySFX(SFXType.ArrowAttack);
 
         arrow.Init
             (

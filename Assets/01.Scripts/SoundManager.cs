@@ -6,6 +6,7 @@ public enum SFXType
     ArrowAttack,
     BulletAttack,
     MonsterHit,
+
     GetItem,
     MonsterDie,
     PlayerHit 
