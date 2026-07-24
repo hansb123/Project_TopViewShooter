@@ -16,6 +16,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI potionText;
     [SerializeField] TextMeshProUGUI hpText;
+
     [SerializeField] TextMeshProUGUI staminaText;
 
     [SerializeField] TextMeshProUGUI helmetText;
