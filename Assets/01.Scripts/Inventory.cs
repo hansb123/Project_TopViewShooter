@@ -6,7 +6,7 @@ public interface Iinventory
     bool UseAmmo(int amount); //의존성을 낮추기 위해서 인터페이스를 사용함. (PlayerWeapon이 탄약을 모르게)  탄약 1발 사용 => 무기 추가 확장성 
     bool UsePotion();
 
-    bool UseGranade();
+    bool UseStaminaPotion();
 
 }
 
@@ -27,10 +27,14 @@ public class Inventory : MonoBehaviour , Iinventory
     private Item leg;
 
     private int ammo;
+
     private int potion;
     private int potionValue;
-    private int granade;
-    private int granadeValue;
+
+    private int staminaPotion;
+    private int staminaValue;
+
+  
 
     
 
@@ -40,7 +44,8 @@ public class Inventory : MonoBehaviour , Iinventory
     {
         ammo = 0;
         potion = 0;
-        granade = 0;
+        staminaPotion = 0;
+
     }
 
 
@@ -94,9 +99,9 @@ public class Inventory : MonoBehaviour , Iinventory
                 AddPotion(item);
                 break;
 
-            case ItemType.Granade:
-                granadeValue = item.value; //초기화 1회 
-                AddGranade(item);
+            case ItemType.StaminaPotion:
+                staminaValue = item.value; //초기화 1회 
+                AddStaminaPotion(item);
                 break;
 
             case ItemType.Helemet:
@@ -130,13 +135,11 @@ public class Inventory : MonoBehaviour , Iinventory
         
     }
 
-    private void AddGranade(Item item)
+    private void AddStaminaPotion(Item item)
     {
-        granade++;
-        UiManager.instance.AddPotionUpdate(granade);
+        staminaPotion++;
+        UiManager.instance.StaminaPotionHudUpdate(staminaPotion);
     }
-
-
 
 
     public bool UseAmmo(int amount)
@@ -156,16 +159,24 @@ public class Inventory : MonoBehaviour , Iinventory
         
         playerInfo.AddHp(potionValue);
         potion--;
-        UiManager.instance.AddPotionUpdate(potion);
+        UiManager.instance.AddPotionUpdate(potion); //포션의 밸류만큼 채움 
         return true;
     }
 
-    public bool UseGranade()
+    public bool UseStaminaPotion()
     {
+        if (staminaPotion <= 0)
+            return false;
 
+        playerInfo.AddStamina(staminaValue); //스테미너 포션의 밸류만큼 채움 
+        staminaPotion--;
+        UiManager.instance.StaminaPotionHudUpdate(staminaPotion);
         return true;
     }
 
 
+
+
+  
 
 }

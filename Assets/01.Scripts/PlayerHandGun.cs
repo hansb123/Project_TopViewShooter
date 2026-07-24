@@ -74,7 +74,10 @@ public class PlayerHandGun : PlayerWeapon
         bullet.transform.position = firePos.position;
         bullet.transform.rotation = transform.rotation;
 
+        SoundManager.instance.PlaySFX(SFXType.BulletAttack);
 
+
+        //데미지, 스피드, 사거리 값을 발사체에 전달 
         bullet.Init
             (
             weaponData.damage,

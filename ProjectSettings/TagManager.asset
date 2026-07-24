@@ -13,13 +13,13 @@ TagManager:
   - UI
   - Wall
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Item
+  - Monster
+  - MonsterWeapon
+  - PlayerWeapon
+  - Projectile
+  - MonsterBullet
+  - StaticObstacle
   - 
   - 
   - 

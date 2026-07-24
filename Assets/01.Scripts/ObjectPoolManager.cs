@@ -52,6 +52,8 @@ public class ObjectPoolManager : MonoBehaviour
         
     }
 
+    //enum으로 바꾼다면
+    //public T GetObject<T>(PoolType type) where T : Componet
 
     public T GetObject<T>(string name) where T : Component
     {
