@@ -141,6 +141,7 @@ public class PlayerInfo : MonoBehaviour, IDamageable
     {
         
         hp -= (dmg-defense);
+        SoundManager.instance.PlaySFX(SFXType.PlayerHit);
         UiManager.instance.HpHudUpdate(hp);
     }
 

@@ -122,7 +122,7 @@ public class Monster : MonoBehaviour , IDamageable
     }
     private Vector2 GetPatrolTarget() //정찰 목적지 계산 
     {
-        if (monsterData.horizontalPatrol)
+        if (monsterData.horizontalPatrol) // 좌 / 우 
         {
             if (isForward)
             {
@@ -135,7 +135,7 @@ public class Monster : MonoBehaviour , IDamageable
         }
         else
         {
-            if (isForward)
+            if (isForward)  // 상 / 하 
             {
                 return startPosition + Vector2.up * monsterData.patrolDistance;
             }
@@ -145,6 +145,9 @@ public class Monster : MonoBehaviour , IDamageable
             }
         }
     }
+
+
+
 
     public void Trace() //추적
     {
@@ -249,6 +252,7 @@ public class Monster : MonoBehaviour , IDamageable
                 Quaternion.identity
                 );
         }
+        SoundManager.instance.PlaySFX(SFXType.MonsterDie);
         Destroy(gameObject);
 
     }

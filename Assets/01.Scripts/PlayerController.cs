@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
 
     private PlayerInfo playerInfo;
+    private bool[] myWeapon;
+
 
     private Iinventory inventory;
 
@@ -22,16 +24,23 @@ public class PlayerController : MonoBehaviour
         sprintSpeed = 12;
         playerInfo = GetComponent<PlayerInfo>();
         inventory = GetComponentInParent<Iinventory>();
+
+        myWeapon = new bool[3];
+
+        myWeapon[0] = true;
+
+     
+
+        UiManager.instance.WeaponUpgrade(transform.GetChild(0).name);
     }
 
 
     private void Update()
     {
         PlayerMove();
-        PlayerWeaponSwap();
         PlayerUse();
         Playersprint();
-      
+
     }
 
 
@@ -69,31 +78,39 @@ public class PlayerController : MonoBehaviour
             playerInfo.RecoverStamina();
         }
 
-        
-
-    }
-
-    private void PlayerWeaponSwap()
-    {
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
-            ChangeWeapon(0);
-
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
-            ChangeWeapon(1);
-
-        if (Keyboard.current.digit3Key.wasPressedThisFrame)
-            ChangeWeapon(2);
     }
 
 
-    private void ChangeWeapon(int index)
+
+    public void UpgradeWeapon()
     {
-        for (int i= 0; i< transform.childCount; i++)
+        if (!myWeapon[1])
         {
-            transform.GetChild(i).gameObject.SetActive(i == index);
+            myWeapon[1] = true;
+
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(true);
+
+            UiManager.instance.WeaponUpgrade(transform.GetChild(1).name);
+
+        }
+        else if (!myWeapon[2])
+        {
+            myWeapon[2] = true;
+
+            transform.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(2).gameObject.SetActive(true);
+
+            UiManager.instance.WeaponUpgrade(transform.GetChild(2).name);
         }
 
     }
+
+
+
+
+
+   
 
     private void PlayerUse()
     {
@@ -107,6 +124,8 @@ public class PlayerController : MonoBehaviour
             inventory.UseStaminaPotion(); //Z => 스태미너 포션 사용 
         }
     }
+
+   
 
 
 

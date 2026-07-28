@@ -10,7 +10,10 @@ public enum ItemType
     //ÀåÂø Àåºñ
     Helemet,
     Chest,
-    Leg
+    Leg,
+
+    HandGun,
+    MiniGun
 }
 
 public enum ItemLevel

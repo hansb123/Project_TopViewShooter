@@ -1,4 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
+
+public enum BgmType
+{
+    StartBgm,
+    GameBgm
+}
 
 
 public enum SFXType
@@ -14,7 +21,7 @@ public enum SFXType
     PlayerHit 
 }
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour  
 {
     public static SoundManager instance;
 
@@ -22,7 +29,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource bgmAudioSurce;
     [SerializeField] AudioSource sfxAudioSource;
 
-    public AudioClip bgmClip; //배경음
+    [SerializeField] Slider bgmSlider;
+    [SerializeField] Slider sfxSlider;
+
+    public AudioClip[] bgmClip; //배경음
     public AudioClip[] soundClip; //효과음
 
     private void Awake()
@@ -32,20 +42,40 @@ public class SoundManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            DontDestroyOnLoad(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
 
 
     void Start()
     {
-        PlayBgm();
+        bgmSlider.value = PlayerPrefs.GetFloat("BGM", 0.5f);
+        sfxSlider.value = PlayerPrefs.GetFloat("Sfx", 0.5f); 
+
+        float bgm = PlayerPrefs.GetFloat("BGM", 0.5f);
+        float sfx = PlayerPrefs.GetFloat("SFX", 0.5f);
+
+        bgmAudioSurce.volume = bgm;
+        sfxAudioSource.volume = sfx;
+
+        ChangeBgm(BgmType.StartBgm);
     }
 
-    private void PlayBgm()
+
+
+  
+
+    public void ChangeBgm(BgmType type)
     {
+        if (bgmAudioSurce.clip == bgmClip[(int)type])
+            return;
+
+        bgmAudioSurce.Stop();
+        bgmAudioSurce.clip = bgmClip[(int)type];
         bgmAudioSurce.Play();
     }
+
+   
 
     public void PlaySFX(SFXType type)
     {
@@ -54,6 +84,19 @@ public class SoundManager : MonoBehaviour
 
 
         sfxAudioSource.PlayOneShot(soundClip[(int)type]);
+    }
+
+
+    public void SetBgmVolume(float volume)
+    {
+        bgmAudioSurce.volume = volume;
+        PlayerPrefs.SetFloat("BGM", volume);
+    }
+
+    public void SetSfxVolume(float volume)
+    {
+        sfxAudioSource.volume = volume;
+        PlayerPrefs.SetFloat("SFX", volume);
     }
 
 
