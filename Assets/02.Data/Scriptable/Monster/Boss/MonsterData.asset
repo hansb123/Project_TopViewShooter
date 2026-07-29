@@ -15,12 +15,12 @@ MonoBehaviour:
   grade: 3
   type: 1
   maxHp: 5000
-  attackRange: 30
+  attackRange: 40
   tracespeed: 4.5
   patrolSpeed: 3
   returnSpeed: 15
   viewDistance: 20
-  viewAngle: 140
+  viewAngle: 360
   patrolDistance: 1
   horizontalPatrol: 1
   dropItem: {fileID: 0}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ac2b1e98504da4baa326a6c13e03d3, type: 3}
   m_Name: Epic_Range
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  grade: 0
-  type: 0
+  grade: 2
+  type: 1
   maxHp: 900
   attackRange: 13
   tracespeed: 6

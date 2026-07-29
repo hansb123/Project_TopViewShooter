@@ -10,9 +10,9 @@ enum WeaponType
 }
 public class PlayerInfo : MonoBehaviour, IDamageable
 {
-    //TODO : 이벤트로 관리 => 서버가 추가되는 것이라면 해야하는 것, 그러나 지금처럼 규모가 적은 프로젝트에선 굳이?  =>  시간 남으면 리팩토링 
-    public event Action<int> OnHpChanged;
-    public event Action<float> OnStaminaChanged;
+    //이벤트로 관리 => 서버가 추가되는 것이라면 반드시 해야함, 그러나 지금처럼 규모가 적은 프로젝트에선 굳이?  =>  시간 남으면 리팩토링 
+    //public event Action<int> OnHpChanged;
+    //public event Action<float> OnStaminaChanged;
 
 
 
@@ -141,7 +141,18 @@ public class PlayerInfo : MonoBehaviour, IDamageable
     {
         
         hp -= (dmg-defense);
+        SoundManager.instance.PlaySFX(SFXType.PlayerHit);
         UiManager.instance.HpHudUpdate(hp);
+
+        Die();
+    }
+
+    private void Die()
+    {
+        if (hp <= 0)
+        {
+            GameManager.instance.ReturnTitle();
+        }
     }
 
    

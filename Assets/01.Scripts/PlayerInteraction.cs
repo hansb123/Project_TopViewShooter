@@ -37,6 +37,7 @@ public class PlayerInteraction : MonoBehaviour
 
                 if(item != null)
                 {
+                    SoundManager.instance.PlaySFX(SFXType.GetItem);
                     item.Interact(gameObject);
                 }
             }

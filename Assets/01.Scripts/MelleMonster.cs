@@ -18,7 +18,7 @@ public class MelleMonster : Monster
 
         Vector2 dir = (target.position - transform.position).normalized;
         Vector2 endPos = (Vector2)transform.position + dir * monsterWeaponData.range;
-        transform.right = dir;
+        sprite.transform.right = dir;
 
 
         rb.DOMove(endPos, monsterWeaponData.range / monsterWeaponData.speed)
