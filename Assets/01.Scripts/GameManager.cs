@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] GameObject optionPanel;
+
+    private GameObject optionPanel;
 
     private void Awake()
     {
@@ -18,7 +20,13 @@ public class GameManager : MonoBehaviour
            
         }
         DontDestroyOnLoad(gameObject);
+
+
+        optionPanel = transform.Find("Option_Canvas").gameObject;
+        optionPanel.SetActive(false);
     }
+
+  
 
     private void Update()
     {
@@ -28,16 +36,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    public void StartGame()
+    public void SetOptionpanel(GameObject panel)
     {
-        //게임시작 
-        SoundManager.instance.ChangeBgm(BgmType.GameBgm);
-        SceneManager.LoadScene("MainScene");
+        optionPanel = panel;
     }
+
+
 
     public void OptionPanel()
     {
+        if (optionPanel == null)
+            return;
+
         if(SceneManager.GetActiveScene().name == "StartScene")
         {
             Time.timeScale = 1f;
@@ -52,6 +62,14 @@ public class GameManager : MonoBehaviour
 
     public void CloseOption()
     {
+        Debug.Log(optionPanel);
+
+        if (optionPanel == null)
+        {
+            Debug.Log("optionPanel == null");
+            return;
+        }
+
         Time.timeScale = 1f;
         optionPanel.SetActive(false);
     }
@@ -61,14 +79,13 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "StartScene")
             return;
 
+
+        optionPanel.SetActive(false);
+        SoundManager.instance.ChangeBgm(BgmType.StartBgm);
         SceneManager.LoadScene("StartScene");
     }
 
-    public void ExitGame()
-    {
-       
-        Application.Quit();
-    }
+   
 
 
 

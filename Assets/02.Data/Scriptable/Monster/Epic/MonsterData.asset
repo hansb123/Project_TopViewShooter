@@ -23,5 +23,5 @@ MonoBehaviour:
   viewAngle: 90
   patrolDistance: 3
   horizontalPatrol: 1
-  dropItem: {fileID: 6777963492776003601, guid: d1cc388f03844c1408d108480e9401f5, type: 3}
+  dropItem: {fileID: 1578730005483535148, guid: fcbbc5481ce1cb24a940ea122b5f8231, type: 3}
   traceTime: 3

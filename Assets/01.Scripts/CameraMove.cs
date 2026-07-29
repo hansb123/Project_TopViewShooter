@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    //시네머신 활용?
     [SerializeField] private Transform target;
     private Vector3 vel = Vector3.zero;
 

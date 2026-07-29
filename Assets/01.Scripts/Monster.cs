@@ -1,5 +1,7 @@
 using UnityEngine;
-using UnityEngine.Rendering;
+using Unity.Collections;
+using System.Collections;
+
 // Player를 감지한다면 
 // 감지한 몬스터 +  주변 몬스터 또한 N초간 Player 추적)
 // N초 추적이 끝나고 제자리로 돌아가면 Hp 풀로 회복 + 다시 Patrol 상태 
@@ -14,8 +16,6 @@ public class Monster : MonoBehaviour , IDamageable
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] LayerMask monsterLayer;
 
-    [SerializeField] MonsterHpbar hpBar;
-
 
     float currenthp;
 
@@ -24,6 +24,7 @@ public class Monster : MonoBehaviour , IDamageable
     float sightTimer;
     float attackCooldownTimer;
 
+    protected SpriteRenderer sprite;
 
 
 
@@ -48,8 +49,10 @@ public class Monster : MonoBehaviour , IDamageable
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
         startPosition = transform.position;
         stateMachine = new MonsterStateMachine(this);
+        
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -93,7 +96,10 @@ public class Monster : MonoBehaviour , IDamageable
 
     private void Lookat(Vector2 dir) //회전 (보고있는방향)
     {
-        transform.right = dir;
+       sprite.transform.right = dir;
+
+       
+        
     }
 
 
@@ -223,7 +229,9 @@ public class Monster : MonoBehaviour , IDamageable
     {
         currenthp -= dmg;
 
-        hpBar.UpdateHp(currenthp / monsterData.maxHp);
+        StartCoroutine(DamageFlash());
+
+       
         Alert(); //데미지를 받으면, 플레이어 추적상태로 변경.
 
         if(currenthp <= 0)
@@ -232,6 +240,17 @@ public class Monster : MonoBehaviour , IDamageable
         }
         
     }
+
+   
+    IEnumerator DamageFlash() //데미지 받으면 껌뻑임 
+    {
+
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+
+        sprite.color = Color.white;
+    }
+
 
     private void Alert() 
     {
