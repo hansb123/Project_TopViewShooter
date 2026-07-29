@@ -11,11 +11,12 @@ public class UiManager : MonoBehaviour
     [SerializeField] Slider isReload;
     [SerializeField] Slider stamina;
 
-   
 
+    [SerializeField] TextMeshProUGUI nowWeaponText;
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI potionText;
     [SerializeField] TextMeshProUGUI hpText;
+
     [SerializeField] TextMeshProUGUI staminaText;
 
     [SerializeField] TextMeshProUGUI helmetText;
@@ -48,7 +49,10 @@ public class UiManager : MonoBehaviour
     }
 
 
-
+    public void WeaponUpgrade(string WeaponName)
+    {
+        nowWeaponText.text = $"{WeaponName}";
+    }
     public void FireHudUpdate(float fireRate) //사격 속도
     {
         isFire.value = fireRate;

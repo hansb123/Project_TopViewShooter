@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class WeaponLaser : MonoBehaviour 
 {
     [SerializeField] private Transform laserPos;
+    [SerializeField] private LayerMask laserHitLayer;
     private LineRenderer line;
     
 
@@ -26,13 +27,13 @@ public class WeaponLaser : MonoBehaviour
 
         RaycastHit2D crosshair;  //조준선 장애물 / 적에게 닿는지 검사할 Ray
         Vector3 mousePos = Mouse.current.position.ReadValue();
-        mousePos.z = -Camera.main.transform.position.z;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        mousePos.z = -Camera.main.transform.position.z; 
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos); //마우스방향 
 
 
         Vector2 rayDirection = (mousePos - laserPos.position).normalized; //플레이어 위치 기준 마우스 방향 구하기 .
 
-        crosshair = Physics2D.Raycast(laserPos.position, rayDirection, rng); 
+        crosshair = Physics2D.Raycast(laserPos.position, rayDirection, rng,laserHitLayer); 
 
         //Debug.DrawRay(laserPos.position, rayDirection *5f);
 
