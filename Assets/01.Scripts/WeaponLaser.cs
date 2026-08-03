@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class WeaponLaser : MonoBehaviour 
 {
     [SerializeField] private Transform laserPos;
-    [SerializeField] private LayerMask laserHitLayer;
+    [SerializeField] private LayerMask laserHitLayer; //충돌할 레이어 
     private LineRenderer line;
     
 

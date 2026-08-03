@@ -106,12 +106,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
-
-
-
-   
-
     private void PlayerUse()
     {
         if(Keyboard.current.qKey.wasPressedThisFrame)

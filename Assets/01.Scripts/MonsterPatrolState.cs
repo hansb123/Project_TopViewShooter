@@ -2,25 +2,25 @@
 public class MonsterPatrolState : MonsterBaseState
 {
     public MonsterPatrolState(Monster _monster, MonsterStateMachine _stateMachine) : base(_monster, _stateMachine) { }
-    
-    //MonsterPatrolState를 만들 떄 ,Monster와 MonsterStateMachine을 넘긴다. (base를 사용하여 부모 생성자를 호출함.)
+
+    //base의 사용이유? => 몬스터 베이스스테이트에서 공통으로 사용하는 몬스터랑 스테이트머신을 초기화하기위해 부모 생성자를 호출함.
+    //자식 클래스는 베이스를 작성하면 중복코드를 작성하지 않아도 됨.
 
     public override void Update()
     {
  
 
-        if (monster.CanSeePlayer())
+        if (monster.CanSeePlayer()) //몬스터가 유저를 발견한다면 
         {
-            //주위 몬스터에게 알림 => 플레이어 추적 명령 (만약상태가 바뀐다면, 상태가 trace로 바뀜)
-            //monster.AlertNearbyMonster();
-            stateMachine.ChangeState(stateMachine.traceState);
+          
+            stateMachine.ChangeState(stateMachine.traceState); //추적 상태로 전환 
             return;
         }
 
     }
 
-    public override void FixedUpdate()
+    public override void FixedUpdate() //움직임은 물리
     {
-        monster.Patrol();
+        monster.Patrol(); //몬스터를 Patrol상태로 전환 
     }
 }

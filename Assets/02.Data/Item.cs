@@ -16,6 +16,7 @@ public enum ItemType
     MiniGun
 }
 
+
 public enum ItemLevel
 {
     Normal,

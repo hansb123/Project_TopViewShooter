@@ -7,7 +7,7 @@ public class MonsterAttackState : MonsterBaseState
 
     public override void Enter()
     {
-        monster.SpeedReset();
+        monster.SpeedReset(); //속도 초기화 
      
        
     }
@@ -25,9 +25,9 @@ public class MonsterAttackState : MonsterBaseState
 
         }
 
-        if(monster.CanAttack())
+        if(monster.CanAttack()) //내가 공격이 가능하다면
         {
-            monster.Attack();
+            monster.Attack();  //공격 
         }
 
 

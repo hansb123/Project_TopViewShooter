@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-
     private GameObject optionPanel;
+
+    public event Action StageClear;
 
     private void Awake()
     {
@@ -79,11 +79,27 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "StartScene")
             return;
 
-
+ 
         optionPanel.SetActive(false);
+        Time.timeScale = 1f;
         SoundManager.instance.ChangeBgm(BgmType.StartBgm);
         SceneManager.LoadScene("StartScene");
     }
+
+    public void ClearStage()
+    {
+        StageClear?.Invoke();
+        EndScene();
+    }
+
+
+    public void EndScene()
+    {
+
+        SceneManager.LoadScene("EndScene");
+    }
+
+   
 
    
 

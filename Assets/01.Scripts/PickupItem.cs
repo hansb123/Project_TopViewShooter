@@ -5,8 +5,6 @@ public class PickupItem : MonoBehaviour
 {
     [SerializeField] Item item;
 
-
-
    public void Interact(GameObject player)
     {
 

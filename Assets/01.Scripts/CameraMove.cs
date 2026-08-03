@@ -4,7 +4,7 @@ public class CameraMove : MonoBehaviour
 {
     //시네머신 활용?
     [SerializeField] private Transform target;
-    [SerializeField] private PolygonCollider2D mapBounds; //카메라가 움직이는 맵 범위 
+    [SerializeField] private PolygonCollider2D mapBounds; //카메라가 움직이는 맵 범위 (카메라 데드존)
 
     private Vector3 vel = Vector3.zero;
 
