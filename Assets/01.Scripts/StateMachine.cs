@@ -1,12 +1,12 @@
 using UnityEngine;
-public interface IState
+public interface IState //상태 
 {
     public void Enter();
     public void Exit();
     public void Update();
     public void FixedUpdate();
 }
-public abstract class StateMachine
+public abstract class StateMachine //상태를 전환하고, 실행
 {
     protected IState currentState;
 

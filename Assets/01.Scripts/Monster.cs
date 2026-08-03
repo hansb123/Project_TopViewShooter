@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.Collections;
 using System.Collections;
 
 // Player를 감지한다면 
@@ -37,7 +36,7 @@ public class Monster : MonoBehaviour , IDamageable
     [SerializeField] Transform player;
     
 
-    MonsterStateMachine stateMachine;
+    MonsterStateMachine stateMachine; //몬스터 FSM 사용 
 
 
     Vector2 startPosition;
@@ -51,7 +50,7 @@ public class Monster : MonoBehaviour , IDamageable
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         startPosition = transform.position;
-        stateMachine = new MonsterStateMachine(this);
+        stateMachine = new MonsterStateMachine(this); //this를 이용해서 monster -> 현재몬스터 (this => 현재 MonsterStateMachine을 넘겨준다.)
         
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -76,6 +75,7 @@ public class Monster : MonoBehaviour , IDamageable
         {
             attackCooldownTimer -= Time.deltaTime;
         }
+
         stateMachine.Update();
     }
     private void FixedUpdate()
@@ -126,6 +126,8 @@ public class Monster : MonoBehaviour , IDamageable
         }
 
     }
+
+
     private Vector2 GetPatrolTarget() //정찰 목적지 계산 
     {
         if (monsterData.horizontalPatrol) // 좌 / 우 
